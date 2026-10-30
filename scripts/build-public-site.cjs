@@ -1,7 +1,7 @@
 // Publish the existing public website, downloads, and validated ad feed together.
 const fs = require('node:fs');
 const path = require('node:path');
-const { build } = require('./build-ad-feed.cjs');
+const { buildCatalog } = require('./build-ad-catalog.cjs');
 
 const root = fs.realpathSync(path.resolve(__dirname, '..'));
 const dist = path.join(root, 'dist');
@@ -41,13 +41,14 @@ ordinary(english, false);
 ordinary(stylesheet, false);
 const assets = path.join(root, 'assets');
 const downloads = path.join(root, 'downloads');
-const adSource = path.join(assets, 'ad');
-ordinary(adSource, true);
 const files = [index, english, stylesheet, ...filesIn(assets, assetTypes), ...filesIn(downloads, downloadTypes)];
 for (const source of files) {
   if (inside(output, fs.realpathSync(source))) throw Error('Public build inputs must be outside dist/site');
 }
-const feed = build(adSource);
+const { manifest: feed, sources } = buildCatalog(root);
+for (const source of sources.values()) {
+  if (inside(output, fs.realpathSync(source))) throw Error('Public ad inputs must be outside dist/site');
+}
 
 // Only this fixed output may be replaced. Refuse linked parents before removal.
 if (fs.existsSync(dist)) ordinary(dist, true);
@@ -63,6 +64,6 @@ for (const source of files) {
 }
 fs.mkdirSync(path.join(output, 'ads'));
 fs.writeFileSync(path.join(output, 'ads', 'manifest.json'), `${JSON.stringify(feed, null, 2)}\n`);
-for (const ad of feed.ads) fs.copyFileSync(path.join(adSource, ad.image), path.join(output, 'ads', ad.image));
+for (const ad of feed.ads) fs.copyFileSync(sources.get(ad.image), path.join(output, 'ads', ad.image));
 fs.writeFileSync(path.join(output, '.nojekyll'), '');
 console.log(`Prepared the public website, downloads, and ${feed.ads.length} ads in ${output}`);

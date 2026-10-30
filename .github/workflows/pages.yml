@@ -21,6 +21,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: Validate advertisement catalog
+        run: node tests/ad-catalog-smoke.cjs
       - name: Build public website, downloads, and ad feed
         run: node scripts/build-public-site.cjs
       - uses: actions/configure-pages@v5
