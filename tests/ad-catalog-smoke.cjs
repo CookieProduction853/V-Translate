@@ -182,9 +182,12 @@ test('the public website build preserves homepage and downloads while publishing
   for (const filename of ['build-public-site.cjs', 'build-ad-feed.cjs', 'build-ad-catalog.cjs']) fs.copyFileSync(path.join(repository, 'scripts', filename), path.join(root, 'scripts', filename));
   const homepage = '<!doctype html><title>Existing public homepage</title><a href="downloads/application.zip">Download</a>\n';
   const englishHomepage = '<!doctype html><html lang="en"><title>Existing English homepage</title><a href="index.html">中文</a></html>\n';
+  const englishRedirect = '<!doctype html><meta http-equiv="refresh" content="0;url=en/">\n';
   const stylesheet = 'body { color: rebeccapurple; }\n';
   fs.writeFileSync(path.join(root, 'index.html'), homepage);
-  fs.writeFileSync(path.join(root, 'en.html'), englishHomepage);
+  fs.mkdirSync(path.join(root, 'en'));
+  fs.writeFileSync(path.join(root, 'en', 'index.html'), englishHomepage);
+  fs.writeFileSync(path.join(root, 'en.html'), englishRedirect);
   fs.writeFileSync(path.join(root, 'style.css'), stylesheet);
   fs.mkdirSync(path.join(root, 'downloads'));
   fs.writeFileSync(path.join(root, 'downloads', 'application.zip'), 'public download fixture');
@@ -203,7 +206,8 @@ test('the public website build preserves homepage and downloads while publishing
   assert.equal(result.status, 0, result.stderr || result.stdout);
   const output = path.join(root, 'dist', 'site');
   assert.equal(fs.readFileSync(path.join(output, 'index.html'), 'utf8'), homepage);
-  assert.equal(fs.readFileSync(path.join(output, 'en.html'), 'utf8'), englishHomepage);
+  assert.equal(fs.readFileSync(path.join(output, 'en.html'), 'utf8'), englishRedirect);
+  assert.equal(fs.readFileSync(path.join(output, 'en', 'index.html'), 'utf8'), englishHomepage);
   assert.equal(fs.readFileSync(path.join(output, 'style.css'), 'utf8'), stylesheet);
   assert.equal(fs.readFileSync(path.join(output, 'downloads', 'application.zip'), 'utf8'), 'public download fixture');
   const published = JSON.parse(fs.readFileSync(path.join(output, 'ads', 'manifest.json'), 'utf8'));
@@ -213,6 +217,7 @@ test('the public website build preserves homepage and downloads while publishing
   assert.ok(fs.existsSync(path.join(output, '.nojekyll')));
   for (const [folder, contents] of before) assert.deepEqual(snapshot(path.join(root, folder)), contents, `${folder} source files must remain unchanged`);
   assert.equal(fs.readFileSync(path.join(root, 'index.html'), 'utf8'), homepage);
-  assert.equal(fs.readFileSync(path.join(root, 'en.html'), 'utf8'), englishHomepage);
+  assert.equal(fs.readFileSync(path.join(root, 'en.html'), 'utf8'), englishRedirect);
+  assert.equal(fs.readFileSync(path.join(root, 'en', 'index.html'), 'utf8'), englishHomepage);
   assert.equal(fs.readFileSync(path.join(root, 'style.css'), 'utf8'), stylesheet);
 });

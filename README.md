@@ -4,7 +4,7 @@
 
 ## Windows 下載
 
-[下載 V-Translate v0.4.5 Windows x64 ZIP](https://github.com/CookieProduction853/V-Translate/raw/refs/heads/main/downloads/V-Translate-v0.4.5-Windows-x64.zip)
+[下載 V-Translate v0.4.6 Windows x64 ZIP](https://github.com/CookieProduction853/V-Translate/raw/refs/heads/main/downloads/V-Translate-v0.4.6-Windows-x64.zip)
 
 先關閉舊背景程式，解壓後開啟 `V-Translate.exe`，不需要 Python。Windows 10／11 64 位元，使用 Chrome／Edge。模型與使用說明見 ZIP 內文件。
 
@@ -42,7 +42,7 @@ python3 -m http.server 3000 --bind 0.0.0.0
 
 圖片與同名 `.url` 可放入 `assets/ad` 或現有的 `ads`，支援 PNG／JPG／WebP。新增時請使用完全相同的檔名主體；同名項目以 `ads` 的內容優先，避免重複播放。
 
-`scripts/build-public-site.cjs` 保留產品主頁、CSS、圖片及下載，並把廣告清單與圖片放到網站的 `ads/`，供 v0.4.5 開機檢查。
+`scripts/build-public-site.cjs` 保留產品主頁、CSS、圖片及下載，並把廣告清單與圖片放到網站的 `ads/`，供 v0.4.6 開機檢查。
 
 使用 GitHub Actions 部署時，在 Settings → Pages → Source 選 GitHub Actions，再執行 Actions → Publish public website and advertisement assets。此公開儲存庫可使用免費的 GitHub Pages；不會將私人應用程式原始碼發佈至網站。
 
@@ -54,8 +54,10 @@ python3 -m http.server 3000 --bind 0.0.0.0
 - `node scripts/build-public-site.cjs` 會同時輸出兩個語言頁面。
 - 最新版固定下載：`https://github.com/CookieProduction853/V-Translate/raw/refs/heads/main/downloads/V-Translate-Windows-x64.zip`。發布新版時，請同步更新這個檔案。
 
-播放器 v0.4.5 的語言選單標示為「介面語言 (Language)」。廣告每張顯示約 10 秒並重複循環，支援 10 張以上（上限 32 張、圖片合計 30 MiB）；下方固定顯示 Fans AD Contact 電郵。
+播放器 v0.4.6 的語言選單標示為「介面語言 (Language)」。廣告每張顯示約 10 秒並重複循環，支援 10 張以上（上限 32 張、圖片合計 30 MiB）；下方固定顯示 Fans AD Contact 電郵。
 
 英文版使用 GitHub Pages 靜態目錄路由 `/en/`，不需要另架伺服器。舊 `/en.html` 會自動轉到 `/en/`。
 
 英文版使用自託管 Signika 可變字體（`assets/fonts/Signika-Variable.ttf`），來源為 Google Fonts 官方儲存庫，授權見 `assets/fonts/Signika-OFL.txt`。中文字體與特色介紹區保持不變；英文版不顯示特色介紹區。
+
+Windows v0.4.6 將 Language、AI 狀態及基本引擎選擇放到右上角，進階選項集中在 Settings 齒輪；字幕紀錄有獨立分頁，廣告支援左右手動切換及 10 秒循環。
