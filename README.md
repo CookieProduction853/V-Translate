@@ -57,3 +57,5 @@ python3 -m http.server 3000 --bind 0.0.0.0
 播放器 v0.4.5 的語言選單標示為「介面語言 (Language)」。廣告每張顯示約 10 秒並重複循環，支援 10 張以上（上限 32 張、圖片合計 30 MiB）；下方固定顯示 Fans AD Contact 電郵。
 
 英文版使用 GitHub Pages 靜態目錄路由 `/en/`，不需要另架伺服器。舊 `/en.html` 會自動轉到 `/en/`。
+
+英文版使用自託管 Signika 可變字體（`assets/fonts/Signika-Variable.ttf`），來源為 Google Fonts 官方儲存庫，授權見 `assets/fonts/Signika-OFL.txt`。中文字體與特色介紹區保持不變；英文版不顯示特色介紹區。

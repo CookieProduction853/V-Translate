@@ -113,3 +113,18 @@ html[lang=en] .feature-grid h3{line-height:1.5}
 .hero-art .floating-note{bottom:-18px}
 @media(max-width:650px){.hero-art .sound-bars{left:22px;top:214px;transform:scale(.5)}.hero-art .stream-bottom>span:first-child{display:none}}
 .hero-art .subtitles>.ai-badge{display:inline-block}
+
+/* English typography: self-hosted Signika (SIL Open Font License). */
+@font-face{font-family:Signika;src:url("assets/fonts/Signika-Variable.ttf") format("truetype");font-weight:300 700;font-style:normal;font-display:swap}
+html[lang=en] body,html[lang=en] h2,html[lang=en] h3,html[lang=en] .scene-title,html[lang=en] .site-footer h2,html[lang=en] .footer-brand small{font-family:Signika,Arial,sans-serif}
+html[lang=en] .hero h1{font-family:Signika,Arial,sans-serif;font-size:48px;font-weight:600;line-height:1.1;letter-spacing:-1px;margin:26px 0 28px}
+html[lang=en] .hero-now{display:block;font-size:82px;font-weight:700;line-height:1;letter-spacing:-2px;margin-bottom:12px}
+html[lang=en] .hero-message{display:block;max-width:520px}
+html[lang=en] .hero .intro{font-size:17px;line-height:1.6;letter-spacing:0;font-weight:500}
+html[lang=en] .hero-tagline{font-size:24px;font-weight:700;margin-top:26px}
+html[lang=en] .header nav>a:first-child{display:inline}
+html[lang=en] h2{font-weight:700;letter-spacing:-.5px}
+@media(max-width:1000px) and (min-width:651px){html[lang=en] .hero h1{font-size:38px}html[lang=en] .hero-now{font-size:68px}}
+@media(max-width:650px){html[lang=en] .hero h1{font-size:42px}html[lang=en] .hero-now{font-size:74px}html[lang=en] .hero-tagline{font-size:23px}}
+@media(max-width:360px){html[lang=en] .hero h1{font-size:36px}html[lang=en] .hero-now{font-size:64px}}
+html[lang=en] .scene-title em{font-family:inherit}
