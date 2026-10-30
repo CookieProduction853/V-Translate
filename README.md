@@ -12,9 +12,9 @@ python3 -m http.server 3000 --bind 0.0.0.0
 ## 自訂內容
 
 - YouTube Demo：`index.html` 直接嵌入 `https://www.youtube-nocookie.com/embed/S1w9Pws00CE`，無須 JavaScript。
-- 品牌圖片：`assets/app-icon.png` 用作頁首、頁尾及分頁圖示。
+- 品牌圖片：`assets/TASK BAR ICON.png` 用作左上頁首圖示，`assets/app-icon.png` 用作頁尾及分頁圖示。
 - 所有下載按鈕均連到指定 GitHub 專案。
-- Hero 保留原本的直播示意視窗，並疊加 `assets/webUI.png` 人物、對話及字幕圖片。這是效果示意，並非軟件實際截圖。
+- Hero 保留原本的直播示意視窗，並疊加更新後的 `assets/webUI.png` 人物及對話圖片，中文字幕放在右下方。這是效果示意，並非軟件實際截圖。
 
 ## 部署
 
