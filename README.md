@@ -23,7 +23,7 @@ python3 -m http.server 3000 --bind 0.0.0.0
 
 - YouTube Demo：`index.html` 直接嵌入 `https://www.youtube-nocookie.com/embed/S1w9Pws00CE`，無須 JavaScript。
 - 品牌圖片：`assets/TASK BAR ICON.png` 用作左上頁首圖示，`assets/app-icon.png` 用作頁尾及分頁圖示。
-- 三個下載按鈕均直接下載本公開儲存庫內的 v0.4.4 Windows ZIP。
+- 中英文頁面的三個下載按鈕均使用固定的最新版下載路徑 `downloads/V-Translate-Windows-x64.zip`；發布新版時需同步替換這個固定檔名及 SHA256 校驗碼。
 - Hero 保留原本的直播示意視窗，並疊加更新後的 `assets/webUI.png` 人物及對話圖片，中文字幕放在右下方。這是效果示意，並非軟件實際截圖。
 
 ## 部署
@@ -45,3 +45,11 @@ python3 -m http.server 3000 --bind 0.0.0.0
 `scripts/build-public-site.cjs` 保留產品主頁、CSS、圖片及下載，並把廣告清單與圖片放到網站的 `ads/`，供 v0.4.4 開機檢查。
 
 使用 GitHub Actions 部署時，在 Settings → Pages → Source 選 GitHub Actions，再執行 Actions → Publish public website and advertisement assets。此公開儲存庫可使用免費的 GitHub Pages；不會將私人應用程式原始碼發佈至網站。
+
+## 網站語言與宣傳連結
+
+- 繁體中文：`index.html`
+- English：`en.html`（右上角可切換，直接開啟英文網址不會跳回中文）
+- Pages 英文宣傳網址：`https://cookieproduction853.github.io/V-Translate/en.html`
+- `node scripts/build-public-site.cjs` 會同時輸出兩個語言頁面。
+- 最新版固定下載：`https://github.com/CookieProduction853/V-Translate/raw/refs/heads/main/downloads/V-Translate-Windows-x64.zip`。發布新版時，請同步更新這個檔案。

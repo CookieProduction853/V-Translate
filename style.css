@@ -85,3 +85,23 @@
 .stream-overlay{right:0}
 @media(max-width:650px){.scene-title{position:absolute;left:22px;top:140px;margin:0;max-width:55%;font-size:28px}.scene-tagline{font-size:17px;line-height:1.35;white-space:normal;max-width:145px}.hero-art .floating-note{display:none}}
 @media(max-width:360px){.scene-title{left:20px;font-size:26px}.scene-tagline{font-size:16px;max-width:130px}}
+/* Bilingual navigation and illustrated download section. */
+.language-switch{font-size:12px;border-left:1px solid var(--line);padding-left:18px;white-space:nowrap}
+nav .language-switch span{margin-left:4px}
+.hero-tagline{font-size:14px;font-weight:600;margin:18px 0 0;color:var(--ink)}
+.description strong{font-weight:700;color:var(--ink)}
+.features .latency-note{font-size:10px;color:var(--muted);line-height:1.7;margin-top:22px}
+.cta{display:grid;grid-template-columns:.8fr 1.2fr;align-items:center;gap:36px}
+.cta-art{display:block;width:min(100%,320px);height:auto;justify-self:center}
+.cta-copy{min-width:0}
+html[lang=en] .brand{font-size:18px;letter-spacing:0}
+html[lang=en] .brand small{font-size:8px;letter-spacing:1px}
+html[lang=en] .hero h1{font-size:clamp(35px,3.7vw,52px);line-height:1.35;letter-spacing:-1px}
+html[lang=en] .hero h1 .highlight{white-space:nowrap}
+html[lang=en] .hero-notes{flex-wrap:wrap;gap:10px 16px}
+html[lang=en] .translation-copy p{font-size:15px}
+html[lang=en] .floating-note{font-size:10px}
+html[lang=en] .feature-grid h3{line-height:1.5}
+@media(max-width:900px){nav{gap:20px}.cta{gap:24px}.cta h2{font-size:27px}}
+@media(max-width:650px){.header{height:auto;padding-block:18px;flex-wrap:wrap;gap:18px}.header nav{width:100%;justify-content:flex-end;gap:22px}.cta{grid-template-columns:1fr;gap:24px}.cta-art{width:230px}.cta-copy h2{font-size:27px}html[lang=en] .hero h1{font-size:40px}.language-switch{padding-left:14px}}
+@media(max-width:360px){.header nav{gap:16px}html[lang=en] .hero h1{font-size:35px}.cta-art{width:200px}.cta-copy h2{font-size:24px}}
