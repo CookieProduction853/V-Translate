@@ -48,3 +48,12 @@
 .site-footer a:hover{color:#cc0000}
 @media(max-width:760px){.site-footer{grid-template-columns:1fr 1fr;gap:28px}.footer-about{grid-column:1/-1}}
 @media(max-width:480px){.brand img.brand-icon{width:44px;height:44px}.site-footer{grid-template-columns:1fr;gap:28px}.footer-about{grid-column:auto}}
+
+/* Optional support beside the free download. */
+.hero-actions{flex-wrap:wrap;gap:18px}
+.download-actions{display:flex;flex-wrap:wrap;align-items:center;gap:12px}
+.donate{background:#ffdd00;color:#0f0f0f;border:1px solid #e0c100;white-space:nowrap}
+.donate:hover{background:#f2d000;transform:translateY(-3px);box-shadow:0 7px 15px #00000012}
+.donate svg{width:20px;height:20px}
+.cta-actions{justify-content:center}
+@media(max-width:480px){.download-actions{gap:10px}.download-actions .button{padding:15px 17px;font-size:13px}}
