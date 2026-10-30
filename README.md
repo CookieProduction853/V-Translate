@@ -12,7 +12,6 @@
 
 此公開儲存庫提供產品網站、Windows 下載包及 `assets/ad` 廣告素材。應用程式開發原始碼另存於私人儲存庫。
 
-
 ## 本地開發
 
 ```sh
@@ -45,4 +44,4 @@ python3 -m http.server 3000 --bind 0.0.0.0
 
 `scripts/build-public-site.cjs` 保留產品主頁、CSS、圖片及下載，並把廣告清單與圖片放到網站的 `ads/`，供 v0.4.4 開機檢查。
 
-使用 GitHub Actions 部署時，在 Settings → Pages → Source 選 GitHub Actions，再執行 Actions → Publish website and advertisement assets。此公開儲存庫可使用免費的 GitHub Pages；不會將私人應用程式原始碼發佈至網站。
+使用 GitHub Actions 部署時，在 Settings → Pages → Source 選 GitHub Actions，再執行 Actions → Publish public website and advertisement assets。此公開儲存庫可使用免費的 GitHub Pages；不會將私人應用程式原始碼發佈至網站。
