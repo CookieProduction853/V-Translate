@@ -29,3 +29,22 @@
 
 /* Deeper red keeps the white download labels readable. */
 .primary{background:#d90000}.primary:hover{background:#c00000}.player-top>span:first-child{color:#cc0000}
+
+/* Uploaded app artwork and contact footer. */
+.brand img.brand-icon{display:block;width:56px;height:56px;object-fit:contain;background:transparent;border-radius:0;flex-shrink:0}
+.site-footer{display:grid;grid-template-columns:1fr 1.1fr 1.2fr;align-items:start;gap:36px;padding:40px 0;font-size:12px;line-height:1.8}
+.site-footer .footer-brand{display:inline-flex;align-items:center;gap:12px;color:var(--ink);font-size:19px}
+.footer-brand img{display:block;object-fit:contain;flex-shrink:0}
+.site-footer .footer-brand>span{font-size:19px;font-weight:700;margin:0}
+.footer-brand small{display:block;font:10px/1.6 Arial,sans-serif;letter-spacing:1px}
+.site-footer p{margin:10px 0 0}
+.site-footer h2{font-family:Arial,sans-serif;font-size:15px;font-weight:700;letter-spacing:0;color:var(--ink);margin:0 0 12px}
+.contact-email{color:var(--ink);font-size:14px;overflow-wrap:anywhere;text-decoration:underline;text-underline-offset:5px}
+.site-footer .footer-contact p{margin-top:8px}
+.site-footer .credit-line{margin:0 0 12px;color:var(--ink)}
+.credit-line strong{font-weight:600}
+.footer-credits>a{display:block;width:fit-content;overflow-wrap:anywhere}
+.footer-github{margin-top:10px}
+.site-footer a:hover{color:#cc0000}
+@media(max-width:760px){.site-footer{grid-template-columns:1fr 1fr;gap:28px}.footer-about{grid-column:1/-1}}
+@media(max-width:480px){.brand img.brand-icon{width:44px;height:44px}.site-footer{grid-template-columns:1fr;gap:28px}.footer-about{grid-column:auto}}
