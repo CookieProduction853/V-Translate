@@ -1,0 +1,19 @@
+{
+  "format_version": 1,
+  "ads": [
+    {
+      "id": "ad-35ae7d879131f382",
+      "image": "AD 1.png",
+      "sha256": "a5d2966da51855a5515e933d3747068e2d7c8eefca0b88787da6cf6d481f5744",
+      "size_bytes": 962960,
+      "link_url": "https://www.youtube.com/watch?v=r8iO0MXlqOA&list=RDr8iO0MXlqOA&start_radio=1"
+    },
+    {
+      "id": "ad-c88218dfec751c6a",
+      "image": "AD2.jpg",
+      "sha256": "d3ef7142200a6d88e473308830ad1a2f8c032b48f0570bc3d0f75f5e45e8c158",
+      "size_bytes": 123810,
+      "link_url": "https://www.youtube.com/watch?v=EAW1zjldjO4"
+    }
+  ]
+}
