@@ -14,7 +14,7 @@ python3 -m http.server 3000 --bind 0.0.0.0
 - YouTube Demo：在 `script.js` 的 `YOUTUBE_DEMO_ID` 填入 11 字元影片 ID；未設定時顯示「敬請期待」，不載入外部影片。
 - 品牌圖片：`assets/app-icon.png` 用作頁首、頁尾及分頁圖示。
 - 所有下載按鈕均連到指定 GitHub 專案。
-- Hero 是字幕效果示意，並非軟件實際截圖。
+- Hero 使用 `assets/webUI_Rim_Outline.png` 人物剪影，搭配日文對話及繁中字幕效果示意，並非軟件實際截圖。
 
 ## 部署
 
