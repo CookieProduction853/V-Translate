@@ -20,13 +20,6 @@ python3 -m http.server 3000 --bind 0.0.0.0
 
 將此目錄部署至任何靜態網站服務，例如 GitHub Pages。無須建置步驟。請在發布前補上正式品牌圖片及 Demo 影片。
 
-## 設計比較
+## 主頁設計
 
-開啟 `designs.html` 比較四款風格，按「完整預覽」開啟可切換主題的首頁。
-
-- `index.html?theme=classic&preview=1`：暖白珊瑚紅
-- `index.html?theme=sakura&preview=1`：櫻花奶油粉
-- `index.html?theme=midnight&preview=1`：午夜電光青
-- `index.html?theme=matcha&preview=1`：抹茶日系書刊
-
-正式首頁預設採用 **04 抹茶・日系書刊**（紙白、苔綠及宋體標題），只有帶 `preview=1` 的網址顯示設計切換工具。字體使用系統字體，裝置之間可能略有不同。
+`index.html` 是油字幕正式主頁，採用紙白底、藍色配色與宋體標題，支援手機排版。已移除風格比較頁及主題切換功能。字體使用系統字體，裝置之間可能略有不同。
