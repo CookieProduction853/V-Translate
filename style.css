@@ -105,3 +105,11 @@ html[lang=en] .feature-grid h3{line-height:1.5}
 @media(max-width:900px){nav{gap:20px}.cta{gap:24px}.cta h2{font-size:27px}}
 @media(max-width:650px){.header{height:auto;padding-block:18px;flex-wrap:wrap;gap:18px}.header nav{width:100%;justify-content:flex-end;gap:22px}.cta{grid-template-columns:1fr;gap:24px}.cta-art{width:230px}.cta-copy h2{font-size:27px}html[lang=en] .hero h1{font-size:40px}.language-switch{padding-left:14px}}
 @media(max-width:360px){.header nav{gap:16px}html[lang=en] .hero h1{font-size:35px}.cta-art{width:200px}.cta-copy h2{font-size:24px}}
+
+/* Align translated subtitles under the AI badge; place audio below the speech bubble. */
+.hero-art .subtitles{display:block}
+.hero-art .translation-copy{padding-top:14px}
+.hero-art .sound-bars{left:49%;right:auto;top:165px;bottom:auto;z-index:3;transform:scale(.75);transform-origin:left top}
+.hero-art .floating-note{bottom:-18px}
+@media(max-width:650px){.hero-art .sound-bars{left:22px;top:214px;transform:scale(.5)}.hero-art .stream-bottom>span:first-child{display:none}}
+.hero-art .subtitles>.ai-badge{display:inline-block}
