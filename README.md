@@ -11,14 +11,14 @@ python3 -m http.server 3000 --bind 0.0.0.0
 
 ## 自訂內容
 
-- YouTube Demo：在 `script.js` 的 `YOUTUBE_DEMO_ID` 填入 11 字元影片 ID；未設定時顯示「敬請期待」，不載入外部影片。
+- YouTube Demo：`index.html` 直接嵌入 `https://www.youtube-nocookie.com/embed/S1w9Pws00CE`，無須 JavaScript。
 - 品牌圖片：`assets/app-icon.png` 用作頁首、頁尾及分頁圖示。
 - 所有下載按鈕均連到指定 GitHub 專案。
-- Hero 使用 `assets/webUI_Rim_Outline.png` 人物剪影，搭配日文對話及繁中字幕效果示意，並非軟件實際截圖。
+- Hero 保留原本的直播示意視窗，並疊加 `assets/webUI.png` 人物、對話及字幕圖片。這是效果示意，並非軟件實際截圖。
 
 ## 部署
 
-將此目錄部署至任何靜態網站服務，例如 GitHub Pages。無須建置步驟。請在發布前補上 Demo 影片。
+將此目錄部署至任何靜態網站服務，例如 GitHub Pages。無須建置步驟。已加入 YouTube Demo 影片。
 
 ## 主頁設計
 

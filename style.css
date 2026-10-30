@@ -58,33 +58,11 @@
 .cta-actions{justify-content:center}
 @media(max-width:480px){.download-actions{gap:10px}.download-actions .button{padding:15px 17px;font-size:13px}}
 
-/* Live-stream illustration using the supplied VTuber silhouette. */
-.vtuber-art{margin:0;min-width:0;padding:15px 0 0}
-.vtuber-art:before{display:none}
-.vtuber-window{position:relative;border:1px solid #cfcfcf;background:#fff;box-shadow:10px 12px 0 #f0f0f0}
-.vtuber-topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:15px 18px;border-bottom:1px solid #e5e5e5;font-size:8px;letter-spacing:1px;color:#606060}
-.live-indicator{display:flex;gap:6px;align-items:center;font-weight:700;color:#cc0000;letter-spacing:1px}
-.live-indicator i{width:6px;height:6px;border-radius:50%;background:#ff0000}
-.vtuber-scene{height:340px;position:relative;overflow:hidden;isolation:isolate;background:#f7f7f7;background-image:linear-gradient(#fff9 1px,transparent 1px),linear-gradient(90deg,#fff9 1px,transparent 1px);background-size:28px 28px}
-.vtuber-halo{position:absolute;right:-55px;bottom:-65px;width:370px;height:370px;border-radius:50%;background:#f8e3e3;border:1px solid #f0d4d4;z-index:-1}
-.scene-language{position:absolute;right:17px;top:17px;font-size:10px;font-weight:700;letter-spacing:1px;color:#606060}
-.scene-language span{color:#d90000;padding:0 6px}
-.vtuber-character{position:absolute;bottom:0;right:-10px;height:89%;width:auto;max-width:65%;object-fit:contain;object-position:bottom;z-index:1}
-.vtuber-speech{position:absolute;left:23px;top:45px;z-index:2;background:#fff;border:1px solid #dedede;border-radius:14px 14px 0 14px;padding:16px 21px;box-shadow:4px 5px 0 #00000008;max-width:70%;transform:rotate(-3deg)}
-.speech-label{font-size:9px;color:#777;letter-spacing:1px}
-.vtuber-speech p{font-size:17px;font-weight:600;line-height:1.7;margin:7px 0 0}
-.speech-heart{color:#d90000;font-size:21px;position:absolute;right:-13px;top:-13px;background:#fff;border:1px solid #eee;border-radius:50%;width:29px;height:29px;text-align:center;line-height:29px}
-.scene-message{position:absolute;left:25px;bottom:60px;z-index:2;font:500 24px/1.65 "Songti TC","Noto Serif TC","PMingLiU",Georgia,serif;letter-spacing:1px}
-.scene-message>span{color:#d90000}
-.scene-onair{position:absolute;bottom:20px;left:25px;display:flex;gap:7px;align-items:center;font-size:8px;letter-spacing:1px;z-index:2;color:#606060}
-.scene-onair i{width:5px;height:5px;background:#d90000;border-radius:50%}
-.vtuber-captions{padding:19px 23px 20px;border-top:1px solid #e5e5e5}
-.caption-meta{display:flex;align-items:center;justify-content:space-between;gap:12px}
-.caption-meta>span:last-child{font-size:9px;color:#777}
-.caption-translation{font-size:16px;font-weight:600;line-height:1.7;margin:13px 0 6px}
-.caption-original{font-size:10px;color:#777;line-height:1.7;margin:0}
-.vtuber-caption{font-size:11px;text-align:center;color:#606060;line-height:1.8;margin:25px 0 0}
-.vtuber-caption small{display:block;font-size:9px;color:#888;margin-top:3px}
-@media(min-width:651px) and (max-width:1000px){.vtuber-scene{height:300px}.vtuber-speech{left:16px;padding:13px 14px;max-width:77%}.vtuber-speech p{font-size:14px}.scene-message{left:18px;font-size:20px}.vtuber-character{right:-25px}.vtuber-topbar{padding:13px 12px;letter-spacing:.5px}}
-@media(max-width:650px){.hero .vtuber-art{margin:0 4px 0 0}.vtuber-scene{height:320px}.vtuber-window{box-shadow:7px 8px 0 #f0f0f0}.vtuber-speech{left:18px;top:42px;padding:14px 17px}.vtuber-speech p{font-size:15px}.scene-message{font-size:23px;left:20px}.scene-onair{left:20px}.vtuber-captions{padding:17px 18px}.caption-translation{font-size:15px}.vtuber-topbar{padding:13px 12px;letter-spacing:.5px;font-size:7px}}
-@media(max-width:360px){.vtuber-scene{height:290px}.vtuber-speech p{font-size:13px}.scene-message{font-size:20px}.vtuber-character{right:-22px}.caption-translation{font-size:14px}}
+/* Keep the original stream-window design and layer the supplied artwork over it. */
+.hero-art .player{position:relative;isolation:isolate}
+.stream-overlay{position:absolute;z-index:2;top:-40px;right:20px;display:block;width:88%;height:auto;pointer-events:none}
+@media(max-width:1000px) and (min-width:651px){.stream-overlay{top:30px}}
+@media(max-width:650px){.stream-overlay{top:35px;right:0;width:100%}}
+@media(max-width:360px){.stream-overlay{top:40px}}
+
+.hero-art .subtitles p{margin-top:24px}
