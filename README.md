@@ -49,9 +49,11 @@ python3 -m http.server 3000 --bind 0.0.0.0
 ## 網站語言與宣傳連結
 
 - 繁體中文：`index.html`
-- English：`en.html`（右上角可切換，直接開啟英文網址不會跳回中文）
-- Pages 英文宣傳網址：`https://cookieproduction853.github.io/V-Translate/en.html`
+- English：`en/index.html`（右上角可切換，直接開啟英文網址不會跳回中文）
+- Pages 英文宣傳網址：`https://cookieproduction853.github.io/V-Translate/en/`
 - `node scripts/build-public-site.cjs` 會同時輸出兩個語言頁面。
 - 最新版固定下載：`https://github.com/CookieProduction853/V-Translate/raw/refs/heads/main/downloads/V-Translate-Windows-x64.zip`。發布新版時，請同步更新這個檔案。
 
 播放器 v0.4.5 的語言選單標示為「介面語言 (Language)」。廣告每張顯示約 10 秒並重複循環，支援 10 張以上（上限 32 張、圖片合計 30 MiB）；下方固定顯示 Fans AD Contact 電郵。
+
+英文版使用 GitHub Pages 靜態目錄路由 `/en/`，不需要另架伺服器。舊 `/en.html` 會自動轉到 `/en/`。
