@@ -2,9 +2,9 @@
   "format_version": 1,
   "ads": [
     {
-      "id": "ad-35ae7d879131f382",
-      "image": "AD 1.png",
-      "sha256": "a5d2966da51855a5515e933d3747068e2d7c8eefca0b88787da6cf6d481f5744",
+      "id": "ad-9dbf5a0e95bf74ce",
+      "image": "AD1.png",
+      "sha256": "9d87a85a8b0847bfc22b6f055f72d9ca6435f0a7fe6db66a1ebece34c1c9bd2f",
       "size_bytes": 962960,
       "link_url": "https://www.youtube.com/watch?v=r8iO0MXlqOA&list=RDr8iO0MXlqOA&start_radio=1"
     },
@@ -14,6 +14,20 @@
       "sha256": "d3ef7142200a6d88e473308830ad1a2f8c032b48f0570bc3d0f75f5e45e8c158",
       "size_bytes": 123810,
       "link_url": "https://www.youtube.com/watch?v=EAW1zjldjO4"
+    },
+    {
+      "id": "ad-a7a78f67b75b34d4",
+      "image": "AD3.png",
+      "sha256": "54c1ca9481996927e3b9dd5aca81904c4eaa000db3ee2bdd72be1dc62d696482",
+      "size_bytes": 607481,
+      "link_url": "https://ticket.rakuten.co.jp/music/jpop/rt4tkw1/"
+    },
+    {
+      "id": "ad-d735f9e345774ab1",
+      "image": "AD4.png",
+      "sha256": "8ee0eebfc383b98cbb67de3a9147b8a8473cebec516848db3c666db39ba1e16e",
+      "size_bytes": 446354,
+      "link_url": "https://www.youtube.com/watch?v=YZxHTW5sJu4"
     }
   ]
 }
