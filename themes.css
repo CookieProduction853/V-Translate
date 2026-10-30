@@ -1,0 +1,73 @@
+/* Alternative visual directions. The default is matcha; query parameters enable other design previews. */
+.design-toolbar{position:sticky;top:0;z-index:20;display:flex;justify-content:center;align-items:center;gap:18px;flex-wrap:wrap;padding:12px 20px;background:#11182d;color:white;font:12px/1.5 Arial,sans-serif;box-shadow:0 2px 14px #0002}.design-toolbar a{text-decoration:underline;text-underline-offset:4px}.design-toolbar label{margin-left:20px}.design-toolbar select{font:inherit;border:1px solid #ffffff55;border-radius:6px;background:#fff;color:#11182d;padding:7px 12px;max-width:100%}
+/* B: soft, friendly, round */
+[data-theme=sakura]{--paper:#fff7fa;--ink:#492f47;--muted:#856a7a;--red:#bc3f72;--line:#ead9e2}
+[data-theme=sakura] body{font-family:"Arial Rounded MT Bold","Hiragino Maru Gothic ProN","Yu Gothic","Microsoft JhengHei",sans-serif}
+[data-theme=sakura] .hero h1{font-weight:700;letter-spacing:0}
+[data-theme=sakura] .button,[data-theme=sakura] .nav-download{border-radius:30px}
+[data-theme=sakura] .player{border-color:#b89aaa;border-radius:23px;transform:rotate(2deg);box-shadow:9px 12px 0 #e9c9d9}
+[data-theme=sakura] .player-top{border-color:#e5d3de}
+[data-theme=sakura] .stream-scene{background:#f3dce8}
+[data-theme=sakura] .hero-art:before{background:#f8e5cb}
+[data-theme=sakura] .scene-title{font-weight:600;letter-spacing:-1px}
+[data-theme=sakura] .language-sticker{border-color:#9b4669;border-radius:20px;box-shadow:3px 4px 0 #9b4669}
+[data-theme=sakura] .subtitles{background:#fffafb}
+[data-theme=sakura] .floating-note{border-color:#e6cedd;border-radius:20px}
+[data-theme=sakura] .floating-note>span{background:#f5e8ee}
+[data-theme=sakura] .feature-grid article{background:#fffafb;border:1px solid var(--line);border-radius:22px;padding:25px}
+[data-theme=sakura] .feature-number{right:22px}
+[data-theme=sakura] .feature-icon{border-radius:50%}
+[data-theme=sakura] .demo-section{background:#f6eaf0;border-color:#ead9e2}
+[data-theme=sakura] .video-shell{border-color:#dcc5d2;background:#ecdae4;border-radius:22px}
+[data-theme=sakura] .video-placeholder{background:radial-gradient(ellipse at center,#fff8fb,transparent 75%)}
+[data-theme=sakura] .video-placeholder p,[data-theme=sakura] .video-tag,[data-theme=sakura] .video-play{color:#826276}
+/* C: dark, precise, stream-inspired */
+[data-theme=midnight]{--paper:#10141f;--ink:#eef4ff;--muted:#a1aec4;--red:#79ebd2;--line:#303b4e}
+[data-theme=midnight] body{background:radial-gradient(ellipse at 80% 15%,#1c2744 0,transparent 35%),var(--paper);font-family:"SFMono-Regular",Consolas,"Noto Sans TC","Microsoft JhengHei",sans-serif}
+[data-theme=midnight] .hero h1{font-weight:800;letter-spacing:-1.5px}
+[data-theme=midnight] .eyebrow,[data-theme=midnight] .feature-number,[data-theme=midnight] .demo-label{font-family:Consolas,monospace}
+[data-theme=midnight] .brand-icon{background:#79ebd2;color:#10141f}
+[data-theme=midnight] .brand-icon>span{color:#664bad}
+[data-theme=midnight] .primary,[data-theme=midnight] .language-sticker{color:#10141f;box-shadow:0 4px 24px #79ebd21c}
+[data-theme=midnight] .player{background:#1b2435;border-color:#516078;transform:rotate(-2deg);box-shadow:9px 12px 0 #79ebd21c}
+[data-theme=midnight] .player-top{border-color:#3a4760}
+[data-theme=midnight] .stream-scene{background:linear-gradient(135deg,#293459,#254547)}
+[data-theme=midnight] .scene-grid{opacity:.15}
+[data-theme=midnight] .speech{background:#172236;color:#e7edfa}
+[data-theme=midnight] .hero-art:before{background:#79ebd209;border:1px solid #79ebd221}
+[data-theme=midnight] .ai-badge{background:#79ebd2;color:#10141f}
+[data-theme=midnight] .sub-status{color:#a1aec4}
+[data-theme=midnight] .language-sticker{border-color:#79ebd2}
+[data-theme=midnight] .floating-note{background:#1c2637;border-color:#475670}
+[data-theme=midnight] .floating-note>span{background:#303951}
+[data-theme=midnight] .coral{background:#2d4343;color:#79ebd2}
+[data-theme=midnight] .lavender{background:#39344f;color:#c9b6ff}
+[data-theme=midnight] .yellow{background:#48432c;color:#ecd985}
+[data-theme=midnight] .demo-section{background:#151d2c;border-color:#303b4e}
+[data-theme=midnight] .video-shell{background:#1c293c;border-color:#465772}
+[data-theme=midnight] .video-placeholder{background:radial-gradient(ellipse at center,#27364d,transparent 75%)}
+[data-theme=midnight] .video-placeholder p,[data-theme=midnight] .video-tag,[data-theme=midnight] .video-play{color:#acbbd1}
+[data-theme=midnight] .video-play{border-color:#71849f}
+[data-theme=midnight] .primary:hover{box-shadow:0 6px 28px #79ebd236}
+/* D: airy Japanese editorial with serif headings */
+[data-theme=matcha]{--paper:#f4f3e9;--ink:#273e34;--muted:#69756a;--red:#507553;--line:#d3d9c9}
+[data-theme=matcha] .hero h1,[data-theme=matcha] h2,[data-theme=matcha] h3{font-family:"Songti TC","Noto Serif TC","PMingLiU",Georgia,serif;font-weight:500;letter-spacing:1px}
+[data-theme=matcha] .hero h1{line-height:1.5}
+[data-theme=matcha] .button,[data-theme=matcha] .nav-download,[data-theme=matcha] .player,[data-theme=matcha] .video-shell{border-radius:0}
+[data-theme=matcha] .primary{box-shadow:none}
+[data-theme=matcha] .hero-art:before{background:#e2e7d5;border-radius:45% 55% 55% 45%}
+[data-theme=matcha] .player{transform:rotate(0);box-shadow:12px 12px 0 #dce1d0;border-color:#849780}
+[data-theme=matcha] .player-top{border-color:#c3cdbb}
+[data-theme=matcha] .stream-scene{background:#dce5cf}
+[data-theme=matcha] .scene-title{font-family:Georgia,serif;font-weight:400;letter-spacing:-1px}
+[data-theme=matcha] .language-sticker{background:#e9c780;color:#273e34;border-color:#849780;border-radius:2px;box-shadow:3px 4px 0 #849780;transform:rotate(4deg)}
+[data-theme=matcha] .floating-note{background:#fffef5;border-radius:0;border-color:#bdc9b3;transform:rotate(-2deg)}
+[data-theme=matcha] .floating-note>span{background:#e7ecdc}
+[data-theme=matcha] .coral{background:#e0e8d7;color:#507553}
+[data-theme=matcha] .lavender{background:#e6e5d6;color:#6c7552}
+[data-theme=matcha] .yellow{background:#f0e4c4;color:#8a7238}
+[data-theme=matcha] .demo-section{background:#e8edde;border-color:#d3d9c9}
+[data-theme=matcha] .video-shell{background:#dce3d1;border-color:#b6c5a9}
+[data-theme=matcha] .video-placeholder{background:radial-gradient(ellipse at center,#f4f5e9,transparent 75%)}
+[data-theme=matcha] .video-placeholder p,[data-theme=matcha] .video-tag,[data-theme=matcha] .video-play{color:#68795f}
+@media(max-width:650px){.design-toolbar{gap:10px}.design-toolbar label{margin-left:0}[data-theme=sakura] .feature-grid article{padding-left:85px}[data-theme=sakura] .feature-icon{left:22px;top:25px}[data-theme=sakura] .feature-number{position:static}}
