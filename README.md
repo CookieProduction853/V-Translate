@@ -10,7 +10,19 @@
 
 [套件說明](downloads/README.md) · [SHA256 校驗碼](downloads/SHA256SUMS.txt)
 
-此公開儲存庫提供產品網站、Windows 下載包及 `assets/ad` 廣告素材。應用程式開發原始碼另存於私人儲存庫。
+此公開儲存庫提供產品網站、Windows／macOS 下載包及 `assets/ad` 廣告素材。應用程式開發原始碼另存於私人儲存庫。
+
+## macOS M 系列下載
+
+[下載 V-Translate macOS Apple Silicon ZIP](https://github.com/CookieProduction853/V-Translate/raw/refs/heads/main/downloads/V-Translate-macOS-arm64.zip)
+
+Mac 版與 Windows 版是不同下載檔，適用 M 系列晶片、macOS 13.5 或更新，不適用 Intel Mac。解壓後把 `V-Translate.app` 移到「應用程式」再開啟，不需要 Python、Homebrew 或 Rosetta；首次使用需要網路下載模型。
+
+本測試版使用 ad-hoc 簽署，沒有 Apple Developer ID 簽署或 Apple 公證。若 macOS 阻擋首次開啟，請先嘗試開啟一次，確認來源後到「系統設定 → 隱私權與安全性 → 仍要開啟」。
+
+使用 Chrome／Edge 開啟並登入直播，分享直播分頁及分頁音訊；不支援 Safari／Firefox 的分頁音訊。macOS 要求權限時，允許該瀏覽器的「螢幕／系統音訊錄製」，必要時重新啟動瀏覽器。模型與詳細說明見 ZIP 內文件。
+
+Mac 固定下載路徑為 `downloads/V-Translate-macOS-arm64.zip`；Windows 固定路徑保留 `downloads/V-Translate-Windows-x64.zip`。兩者需各自維護 SHA256 校驗碼。
 
 ## 本地開發
 
@@ -23,7 +35,7 @@ python3 -m http.server 3000 --bind 0.0.0.0
 
 - YouTube Demo：`index.html` 直接嵌入 `https://www.youtube-nocookie.com/embed/S1w9Pws00CE`，無須 JavaScript。
 - 品牌圖片：`assets/TASK BAR ICON.png` 用作左上頁首圖示，`assets/app-icon.png` 用作頁尾及分頁圖示。
-- 中英文頁面的三個下載按鈕均使用固定的最新版下載路徑 `downloads/V-Translate-Windows-x64.zip`；發布新版時需同步替換這個固定檔名及 SHA256 校驗碼。
+- 中英文頁面的三個 Windows 下載按鈕均使用固定的最新版下載路徑 `downloads/V-Translate-Windows-x64.zip`；發布新版時需同步替換這個固定檔名及 SHA256 校驗碼。
 - Hero 保留原本的直播示意視窗，並疊加更新後的 `assets/webUI.png` 人物及對話圖片，中文字幕放在左側 AI 標籤下方，聲波放在日文對話泡泡下方。這是效果示意，並非軟件實際截圖。
 
 ## 部署

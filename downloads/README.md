@@ -1,4 +1,4 @@
-# 油字幕 / V-Translate · Windows v0.4.6 測試版
+# 油字幕 / V-Translate · Windows v0.4.6 / macOS v0.5.1 測試版
 
 **油字幕 - 本地 AI Vtuber 即時字幕**
 
@@ -29,8 +29,22 @@ To use a custom translation model, stop capture and place one complete chat/inst
 
 這是測試版。自動測試與合成影音驗證不等於 Windows 真機、實際 CPU／GPU 效能、真實模型或會員直播驗證；Windows 桌面圖示外觀亦尚未真機確認。高／中／低是起始建議，尚未在各目標電腦實測，不承諾特定 CPU 使用率、加速幅度或字幕延遲。完整使用方式與驗證範圍見 [儲存庫首頁](../README.md)。
 
-左上語言選單新增「介面語言 (Language)」標示，廣告下方固定顯示 Fans AD Contact 電郵。輪播支援 10 張以上，最多 32 張、圖片合計 30 MiB。
+頁首語言選單顯示「介面語言 (Language)」，廣告下方固定顯示 Fans AD Contact 電郵。輪播支援 10 張以上，最多 32 張、圖片合計 30 MiB。
 
 新版介面：右上依序為 Language、AI 狀態、AI 引擎與 Settings 齒輪。主題、模型管理、效能及顯卡裝置設定在 Settings 內。字幕紀錄移到獨立分頁，切換保留擷取；廣告可左右切換，也會每 10 秒循環。
 
 The header contains Language, AI status, AI engine and Settings. Advanced settings are inside the gear. Caption history has its own tab; changing views preserves capture. Ads have previous/next controls and a ten-second loop.
+
+## macOS v0.5.1 · Apple Silicon 預覽版
+
+下載 [V-Translate-v0.5.1-macOS-arm64.zip](https://github.com/CookieProduction853/V-Translate/raw/refs/heads/main/downloads/V-Translate-v0.5.1-macOS-arm64.zip)（[固定下載名稱](V-Translate-macOS-arm64.zip)）。這是獨立的 Mac 套件，不要下載 Windows ZIP。
+
+- 適用 Apple M 系列及 macOS 13.5 或更新，不支援 Intel Mac。解壓後把 `V-Translate.app` 移到「應用程式」並開啟；不用 Python、Homebrew 或 Rosetta。首次使用需要網路下載模型。
+- 包含同樣的介面重排、Language、Settings、字幕紀錄分頁及廣告左右切換。Whisper 聽寫使用 CPU，翻譯可選 CPU 或 Apple Metal。
+- 使用 Chrome／Edge 登入及開啟直播，分享直播分頁及「分頁音訊」。Safari／Firefox 的分頁音訊擷取不支援。若系統要求錄製權限，在「系統設定 → 隱私權與安全性」允許該瀏覽器的螢幕／系統音訊錄製，再重新開啟瀏覽器。
+- 本預覽版使用 ad-hoc 簽署，未有 Apple Developer ID 簽署或 Apple 公證。若 macOS 阻擋，先嘗試開啟一次，確認下載來源後到「系統設定 → 隱私權與安全性 → 仍要開啟」。
+- 已在原生 Apple Silicon CI 通過 CPU、Metal 實際音訊的聽寫及翻譯測試；實體 Mac 的直播擷取、會員直播及處理效能仍待測試，不承諾特定延遲。詳細說明見 ZIP 內的 `docs/macos.md`。
+
+Download the separate **macOS arm64** ZIP for Apple Silicon Macs running macOS 13.5 or later. Move `V-Translate.app` to Applications, then open it. Python, Homebrew and Rosetta are not required; the first model download needs Internet access. Whisper uses CPU; translation supports CPU or Apple Metal.
+
+This preview is ad-hoc signed and is not Apple Developer ID signed or notarized. If blocked, attempt to open it once, verify its source, then use **System Settings → Privacy & Security → Open Anyway**. Use Chrome or Edge, grant browser screen/system-audio recording permission when prompted, and share the live-stream tab with tab audio. Native CI verified real-sample CPU and Metal inference; live capture and performance on physical Macs remain unverified.

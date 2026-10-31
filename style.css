@@ -128,3 +128,9 @@ html[lang=en] h2{font-weight:700;letter-spacing:-.5px}
 @media(max-width:650px){html[lang=en] .hero h1{font-size:42px}html[lang=en] .hero-now{font-size:74px}html[lang=en] .hero-tagline{font-size:23px}}
 @media(max-width:360px){html[lang=en] .hero h1{font-size:36px}html[lang=en] .hero-now{font-size:64px}}
 html[lang=en] .scene-title em{font-family:inherit}
+
+/* Distinct downloads for Windows and Apple Silicon, using the existing button layout. */
+.mac-download{background:#f1f1f1;color:#0f0f0f;border:1px solid #c9c9c9;max-width:100%;white-space:normal}
+.mac-download:hover{background:#e7e7e7;transform:translateY(-3px);box-shadow:0 7px 15px #00000012}
+.platform-requirements{font-size:10px;color:var(--muted);line-height:1.8;margin:16px 0 0}
+@media(max-width:480px){.download-actions .mac-download{font-size:12px;padding:15px 17px}}
