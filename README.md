@@ -4,11 +4,11 @@
 
 ## Windows 下載
 
-[下載 V-Translate v0.6.0 Windows x64 ZIP](https://github.com/CookieProduction853/V-Translate/releases/download/v0.6.0-Windows-x64-9bfc2e27/V-Translate-v0.6.0-Windows-x64.zip)
+[下載 V-Translate v0.5.2 Windows x64 ZIP](https://github.com/CookieProduction853/V-Translate/raw/refs/heads/main/downloads/V-Translate-v0.5.2-Windows-x64.zip)
 
 先關閉舊背景程式，解壓後開啟 `V-Translate.exe`，不需要 Python。Windows 10／11 64 位元，使用 Chrome／Edge。模型與使用說明見 ZIP 內文件。
 
-[套件說明](downloads/README.md) · [Windows SHA256 校驗碼](https://github.com/CookieProduction853/V-Translate/releases/latest/download/SHA256SUMS-Windows-x64.txt)
+[套件說明](downloads/README.md) · [SHA256 校驗碼](downloads/SHA256SUMS.txt)
 
 此公開儲存庫提供產品網站、Windows／macOS 下載包及 `assets/ad` 廣告素材。應用程式開發原始碼另存於私人儲存庫。
 
@@ -64,7 +64,7 @@ python3 -m http.server 3000 --bind 0.0.0.0
 - English：`en/index.html`（右上角可切換，直接開啟英文網址不會跳回中文）
 - Pages 英文宣傳網址：`https://cookieproduction853.github.io/V-Translate/en/`
 - `node scripts/build-public-site.cjs` 會同時輸出兩個語言頁面。
-- 最新版固定下載：`https://github.com/CookieProduction853/V-Translate/releases/latest/download/V-Translate-Windows-x64.zip`。發布新版時，請同步更新這個檔案。
+- 最新版固定下載：`https://github.com/CookieProduction853/V-Translate/raw/refs/heads/main/downloads/V-Translate-Windows-x64.zip`。發布新版時，請同步更新這個檔案。
 
 播放器 v0.4.6 的語言選單標示為「介面語言 (Language)」。廣告每張顯示約 10 秒並重複循環，支援 10 張以上（上限 32 張、圖片合計 30 MiB）；下方固定顯示 Fans AD Contact 電郵。
 
@@ -76,8 +76,6 @@ Windows v0.4.6 將 Language、AI 狀態及基本引擎選擇放到右上角，�
 
 Windows v0.5.2 已更新右上角 Performance／模型就緒狀態及 Settings 控制；直播分頁超過 20 分鐘無回應時卸載 AI 引擎，並提供重啟 overlay。下載後請先結束舊背景程式，再開啟新套件。版本及來源見 `downloads/release-Windows-x64.json`。
 
-## Windows v0.6.0 影片模式
+## Apple M 系列 v0.5.2
 
-「播放器／字幕紀錄」旁新增影片模式。輸入公開 YouTube 網址，先完成本機聽寫及翻譯，再使用播放器觀看，支援暫停、倍速、進度跳轉、音量、全螢幕及 SRT 匯出。完整 Windows ZIP 已附帶影片工具，請整包解壓；不需要另裝 Python。
-
-影片套件約 150 MB，超出 Git 單檔上限，因此 Windows 最新下載已改用 GitHub Releases 固定檔名。`downloads/` 內舊 ZIP 與校驗碼為歷史版本；Mac 下載路徑保持獨立。
+[下載 Mac v0.5.2 ZIP](https://github.com/CookieProduction853/V-Translate/raw/refs/heads/main/downloads/V-Translate-macOS-arm64.zip)。主程式已由 v0.5.2 程式碼原生重建，保留 CPU／Metal 選擇；不含 v0.6.0 影片模式。更新前先關閉舊背景程式，再解壓及開啟 V-Translate.app。版本、來源與校驗碼見 downloads/release-macOS-arm64.json。

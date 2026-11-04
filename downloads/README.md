@@ -1,12 +1,8 @@
-# Windows v0.6.0：影片模式
+# Apple M 系列 v0.5.2
 
-[下載 Windows v0.6.0 完整 ZIP](https://github.com/CookieProduction853/V-Translate/releases/latest/download/V-Translate-Windows-x64.zip) · [新套件 SHA256](https://github.com/CookieProduction853/V-Translate/releases/latest/download/SHA256SUMS-Windows-x64.txt) · [版本及來源](release-Windows-x64.json)
+[下載 Mac ZIP](V-Translate-macOS-arm64.zip) · [版本、來源及校驗碼](release-macOS-arm64.json)
 
-「播放器／字幕紀錄」旁新增影片模式：輸入公開 YouTube 網址，完成整段本機聽寫及翻譯後再播放。提供播放／暫停、0.5–2× 倍速、進度跳轉、音量、全螢幕及 SRT 匯出；支援最長 4 小時、音訊上限 512 MB 的非直播影片。播放仍需連線 YouTube；影片必須允許公開存取及嵌入播放。
-
-請先關閉舊的背景 Whisper，再解壓整個 ZIP，執行 `V-Translate.exe`。請保留同層的 `video-tools` 資料夾；套件已附 yt-dlp、FFmpeg、Node 及授權說明，不需另裝 Python。已有模型與設定可保留。
-
-新版 ZIP 約 150 MB，已改放 GitHub Releases；本目錄舊 ZIP 及 `SHA256SUMS.txt` 保留作歷史版本使用。macOS 下載另行維護。
+已原生重建 v0.5.2，通過封裝服務、原生啟動及 CPU 推論檢查。更新前請關閉舊背景 Whisper，再開啟新 App。
 
 ---
 
