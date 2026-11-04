@@ -1,16 +1,20 @@
 {
-  "version": "0.5.2",
-  "source_commit": "e212bcc1ac6c6a94cea58ae59eb50bd925111244",
+  "version": "0.6.0",
+  "platform": "Windows-x64",
+  "source_commit": "9bfc2e27ddc70e2669f783e5db8d9e826017bcb1",
+  "tag": "v0.6.0-Windows-x64-9bfc2e27",
   "files": [
     {
-      "name": "V-Translate-v0.5.2-Windows-x64.zip",
-      "size_bytes": 11661916,
-      "sha256": "9fd5092513c19818718a05a0e5779f3dbcb9b865af81aa0b4c9fdcf4e6098490"
+      "name": "V-Translate-v0.6.0-Windows-x64.zip",
+      "size_bytes": 149592537,
+      "sha256": "3243c830d69c19431c98f5a4b402091a3469becbd09fac2fdff1924df7411c66",
+      "download_url": "https://github.com/CookieProduction853/V-Translate/releases/download/v0.6.0-Windows-x64-9bfc2e27/V-Translate-v0.6.0-Windows-x64.zip"
     },
     {
       "name": "V-Translate-Windows-x64.zip",
-      "size_bytes": 11661916,
-      "sha256": "9fd5092513c19818718a05a0e5779f3dbcb9b865af81aa0b4c9fdcf4e6098490"
+      "size_bytes": 149592537,
+      "sha256": "3243c830d69c19431c98f5a4b402091a3469becbd09fac2fdff1924df7411c66",
+      "download_url": "https://github.com/CookieProduction853/V-Translate/releases/download/v0.6.0-Windows-x64-9bfc2e27/V-Translate-Windows-x64.zip"
     }
   ]
 }
