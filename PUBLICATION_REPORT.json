@@ -1,0 +1,12 @@
+{
+  "version": "0.6.0",
+  "platform": "Windows-x64",
+  "source_commit": "9bfc2e27ddc70e2669f783e5db8d9e826017bcb1",
+  "sha256": "3243c830d69c19431c98f5a4b402091a3469becbd09fac2fdff1924df7411c66",
+  "size_bytes": 149592537,
+  "names": [
+    "V-Translate-v0.6.0-Windows-x64.zip",
+    "V-Translate-Windows-x64.zip"
+  ],
+  "tag": "v0.6.0-Windows-x64-9bfc2e27"
+}
