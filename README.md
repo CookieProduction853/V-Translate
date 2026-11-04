@@ -4,7 +4,7 @@
 
 ## Windows 下載
 
-[下載 V-Translate v0.4.6 Windows x64 ZIP](https://github.com/CookieProduction853/V-Translate/raw/refs/heads/main/downloads/V-Translate-v0.4.6-Windows-x64.zip)
+[下載 V-Translate v0.5.2 Windows x64 ZIP](https://github.com/CookieProduction853/V-Translate/raw/refs/heads/main/downloads/V-Translate-v0.5.2-Windows-x64.zip)
 
 先關閉舊背景程式，解壓後開啟 `V-Translate.exe`，不需要 Python。Windows 10／11 64 位元，使用 Chrome／Edge。模型與使用說明見 ZIP 內文件。
 
@@ -73,3 +73,5 @@ python3 -m http.server 3000 --bind 0.0.0.0
 英文版使用自託管 Signika 可變字體（`assets/fonts/Signika-Variable.ttf`），來源為 Google Fonts 官方儲存庫，授權見 `assets/fonts/Signika-OFL.txt`。中文字體與特色介紹區保持不變；英文版不顯示特色介紹區。
 
 Windows v0.4.6 將 Language、AI 狀態及基本引擎選擇放到右上角，進階選項集中在 Settings 齒輪；字幕紀錄有獨立分頁，廣告支援左右手動切換及 10 秒循環。
+
+Windows v0.5.2 已更新右上角 Performance／模型就緒狀態及 Settings 控制；直播分頁超過 20 分鐘無回應時卸載 AI 引擎，並提供重啟 overlay。下載後請先結束舊背景程式，再開啟新套件。版本及來源見 `downloads/release-Windows-x64.json`。

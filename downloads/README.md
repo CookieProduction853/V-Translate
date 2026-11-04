@@ -1,3 +1,13 @@
+# Windows v0.5.2 更新
+
+[下載 Windows v0.5.2](V-Translate-Windows-x64.zip) · [版本／來源及 SHA256](release-Windows-x64.json)
+
+右上角新增 Performance 及模型就緒控制，Settings 內保留相同控制。直播分頁超過 20 分鐘無回應時，Whisper／翻譯引擎會卸載以釋放資源；overlay 提供一鍵重啟，之後請重新選擇直播分頁。
+
+更新前先按「關閉背景聽寫程式(whisper)」，再解壓並執行新套件，頁首應顯示 v0.5.2。已有模型、詞彙包和設定可保留。本次 Windows 套件已通過原生 Rust 測試、靜態檢查及實際封裝服務測試；真實模型／顯卡效能和會員直播仍需用戶硬件驗證。macOS 套件獨立發佈，請查其套件版本。
+
+以下為歷史版本說明。
+
 # 油字幕 / V-Translate · Windows v0.4.6 / macOS v0.5.1 測試版
 
 **油字幕 - 本地 AI Vtuber 即時字幕**
