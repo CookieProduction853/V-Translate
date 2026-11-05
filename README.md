@@ -2,9 +2,13 @@
 
 響應式產品介紹網站，使用 HTML、CSS、JavaScript，無套件相依。
 
+## v0.5.3 維護更新
+
+基於 v0.5.2，保留即時翻譯功能，不包含已棄用的 v0.6.0 影片模式。設定頁新增 Chrome／Edge 開啟及複製播放器連結，方便把播放器移到直播所在的瀏覽器／Profile；毋須更改預設瀏覽器。瀏覽器只允許分享同一 Profile 的分頁。點擊「請準備 AI」提示可直接準備模型。
+
 ## Windows 下載
 
-[下載 V-Translate v0.5.2 Windows x64 ZIP](https://github.com/CookieProduction853/V-Translate/raw/refs/heads/main/downloads/V-Translate-v0.5.2-Windows-x64.zip)
+[下載 V-Translate v0.5.3 Windows x64 ZIP](https://github.com/CookieProduction853/V-Translate/raw/refs/heads/main/downloads/V-Translate-v0.5.3-Windows-x64.zip)
 
 先關閉舊背景程式，解壓後開啟 `V-Translate.exe`，不需要 Python。Windows 10／11 64 位元，使用 Chrome／Edge。模型與使用說明見 ZIP 內文件。
 

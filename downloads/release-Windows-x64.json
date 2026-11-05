@@ -1,16 +1,16 @@
 {
-  "version": "0.5.2",
-  "source_commit": "e212bcc1ac6c6a94cea58ae59eb50bd925111244",
+  "version": "0.5.3",
+  "source_commit": "417d373496f55a9e24809e63dfa03795ae2a3b9e",
   "files": [
     {
-      "name": "V-Translate-v0.5.2-Windows-x64.zip",
-      "size_bytes": 11661916,
-      "sha256": "9fd5092513c19818718a05a0e5779f3dbcb9b865af81aa0b4c9fdcf4e6098490"
+      "name": "V-Translate-v0.5.3-Windows-x64.zip",
+      "size_bytes": 11677299,
+      "sha256": "950e94b23e8c3d67d91bd90553912e2fd91ef33b660ea24a533b9e9fdacd2af2"
     },
     {
       "name": "V-Translate-Windows-x64.zip",
-      "size_bytes": 11661916,
-      "sha256": "9fd5092513c19818718a05a0e5779f3dbcb9b865af81aa0b4c9fdcf4e6098490"
+      "size_bytes": 11677299,
+      "sha256": "950e94b23e8c3d67d91bd90553912e2fd91ef33b660ea24a533b9e9fdacd2af2"
     }
   ]
 }

@@ -1,3 +1,19 @@
+# Windows／Apple M v0.5.3（基於 v0.5.2）
+
+[下載 Windows ZIP](V-Translate-Windows-x64.zip) · [下載 Apple M ZIP](V-Translate-macOS-arm64.zip)
+
+新增瀏覽器／Profile 切換：設定頁可開啟 Chrome／Edge，或複製播放器連結至直播所在的 Profile。毋須更改預設瀏覽器；瀏覽器只能分享同一 Profile 的分頁。點擊「請準備 AI」提示即可啟動模型準備。
+
+更新前請先關閉舊背景 Whisper，再解壓及執行新版。頁首應顯示 v0.5.3；模型與設定可沿用。不包含 v0.6.0 影片模式。
+
+Windows 已通過原生測試及封裝服務檢查；Apple M 已通過原生建置、App 啟動、CPU 和 Metal 實際音訊推論檢查。
+
+版本、來源及校驗碼：[Windows](release-Windows-x64.json) · [macOS](release-macOS-arm64.json) · [SHA256](SHA256SUMS.txt)。
+
+以下為歷史版本說明。
+
+---
+
 # Apple M 系列 v0.5.2
 
 [下載 Mac ZIP](V-Translate-macOS-arm64.zip) · [版本、來源及校驗碼](release-macOS-arm64.json)
