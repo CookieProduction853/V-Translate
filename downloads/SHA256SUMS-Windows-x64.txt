@@ -1,2 +1,2 @@
-950e94b23e8c3d67d91bd90553912e2fd91ef33b660ea24a533b9e9fdacd2af2  V-Translate-v0.5.3-Windows-x64.zip
-950e94b23e8c3d67d91bd90553912e2fd91ef33b660ea24a533b9e9fdacd2af2  V-Translate-Windows-x64.zip
+239a3962dcb93fa19cf47c4e9017615baebd699face3044b2e37ca9c8a8ba781  V-Translate-v0.5.4-Windows-x64.zip
+239a3962dcb93fa19cf47c4e9017615baebd699face3044b2e37ca9c8a8ba781  V-Translate-Windows-x64.zip

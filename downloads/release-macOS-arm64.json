@@ -1,20 +1,20 @@
 {
-  "version": "0.5.3",
-  "source_commit": "417d373496f55a9e24809e63dfa03795ae2a3b9e",
+  "version": "0.5.4",
+  "source_commit": "efef3d503649365ba97f6ef7c7ad63a0d13b0d55",
   "files": [
     {
-      "name": "V-Translate-v0.5.3-macOS-arm64.zip",
-      "size_bytes": 23057000,
-      "sha256": "533d90871506f86d7992912efdd0dfab000ae5d3e92b31c808cc565d1eee01e8"
+      "name": "V-Translate-v0.5.4-macOS-arm64.zip",
+      "size_bytes": 23085890,
+      "sha256": "a4b57dfc8f04e4c29d5742d5e424ffe3341036f0c263fa2c044e345e7b493901"
     },
     {
       "name": "V-Translate-macOS-arm64.zip",
-      "size_bytes": 23057000,
-      "sha256": "533d90871506f86d7992912efdd0dfab000ae5d3e92b31c808cc565d1eee01e8"
+      "size_bytes": 23085890,
+      "sha256": "a4b57dfc8f04e4c29d5742d5e424ffe3341036f0c263fa2c044e345e7b493901"
     }
   ],
+  "app_binary_sha256": "e362266a3a914bab03bd08b25f814b0381912eba9186b01addf0e4f2243bc33a",
   "architecture": "arm64",
-  "app_binary_sha256": "f1393f6ba7a6a481a8c21dd742b0b7ae3e51e69ab66afbcdaea780f16959f7c4",
   "native_inference": {
     "cpu": "passed",
     "metal": "passed"
