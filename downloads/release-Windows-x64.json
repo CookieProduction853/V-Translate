@@ -1,17 +1,23 @@
 {
-  "version": "0.5.4",
-  "source_commit": "efef3d503649365ba97f6ef7c7ad63a0d13b0d55",
+  "version": "0.5.5",
+  "source_commit": "e11c2871c52ba3e7589e8bce922244f16e4dcdbb",
   "files": [
     {
-      "name": "V-Translate-v0.5.4-Windows-x64.zip",
-      "size_bytes": 11696691,
-      "sha256": "239a3962dcb93fa19cf47c4e9017615baebd699face3044b2e37ca9c8a8ba781"
+      "name": "V-Translate-v0.5.5-Windows-x64.zip",
+      "size_bytes": 11698880,
+      "sha256": "15cd9d4db879b0972f7deb41268851e9b93eba1943360a428730b359e096b473"
     },
     {
       "name": "V-Translate-Windows-x64.zip",
-      "size_bytes": 11696691,
-      "sha256": "239a3962dcb93fa19cf47c4e9017615baebd699face3044b2e37ca9c8a8ba781"
+      "size_bytes": 11698880,
+      "sha256": "15cd9d4db879b0972f7deb41268851e9b93eba1943360a428730b359e096b473"
     }
   ],
-  "app_binary_sha256": "092a9a92d78c08807f28ffd196d064afa88ecf175550bc1414fd528d6ca08bf6"
+  "app_binary_sha256": "0cfe0ba5b3c2b5a693a846a76f1da9258126dda1b62512fd1ac38caad4673f61",
+  "stop_helper_test": "passed",
+  "native_caption_test": {
+    "fixture": "Win32 caption window",
+    "cancel": "passed",
+    "close_player_only": "passed"
+  }
 }

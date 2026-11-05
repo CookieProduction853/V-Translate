@@ -1,12 +1,14 @@
-# Windows／Apple M v0.5.4（基於 v0.5.2）
+# Windows／Apple M v0.5.5（基於 v0.5.2）
 
 [下載 Windows ZIP](V-Translate-Windows-x64.zip) · [下載 Apple M ZIP](V-Translate-macOS-arm64.zip)
 
-新增關閉提示：關閉最後一個播放器視窗約 3 秒後，會彈出系統確認，選擇關閉背景 Whisper 或保留背景執行。重新整理或仍有其他播放器視窗時不會提示。
+修正 Windows 關閉提示：從程式開啟的獨立播放器按右上角 X，會在視窗關閉前詢問。是＝同時關閉 Whisper／本機服務；否＝只關播放器；取消＝返回播放器。鍵盤／系統選單關閉另有原生提示備援。
+
+資料夾新增 `Stop-Whisper.cmd`（Windows，需連同 `Stop-Whisper.ps1` 保留）或 `Stop-Whisper.command`（Mac）。雙擊即可關閉背景 Whisper 及 127.0.0.1 服務，不會啟動播放器，已有模型及設定會保留。
 
 新增瀏覽器／Profile 切換：設定頁可開啟 Chrome／Edge，或複製播放器連結至直播所在的 Profile。毋須更改預設瀏覽器；瀏覽器只能分享同一 Profile 的分頁。點擊「請準備 AI」提示即可啟動模型準備。
 
-更新前請先關閉舊背景 Whisper，再解壓及執行新版。頁首應顯示 v0.5.4；模型與設定可沿用。不包含 v0.6.0 影片模式。
+更新前請先關閉舊背景 Whisper，再解壓及執行新版。頁首應顯示 v0.5.5；模型與設定可沿用。不包含 v0.6.0 影片模式。
 
 Windows 已通過原生測試及封裝服務檢查；Apple M 已通過原生建置、App 啟動、CPU 和 Metal 實際音訊推論檢查。
 
