@@ -180,8 +180,8 @@ test('the public website build preserves homepage and downloads while publishing
   const root = fixture(t);
   fs.mkdirSync(path.join(root, 'scripts'));
   for (const filename of ['build-public-site.cjs', 'build-ad-feed.cjs', 'build-ad-catalog.cjs']) fs.copyFileSync(path.join(repository, 'scripts', filename), path.join(root, 'scripts', filename));
-  const homepage = '<!doctype html><title>Existing public homepage</title><a href="downloads/application.zip">Download</a>\n';
-  const englishHomepage = '<!doctype html><html lang="en"><title>Existing English homepage</title><a href="index.html">中文</a></html>\n';
+  const homepage = '<!doctype html><title>Existing public homepage</title><a href="downloads/application.zip">Download</a><a href="version.json">v__VTRANSLATE_VERSION__</a>\n';
+  const englishHomepage = '<!doctype html><html lang="en"><title>Existing English homepage</title><a href="index.html">中文</a><a href="../version.json">v__VTRANSLATE_VERSION__</a></html>\n';
   const englishRedirect = '<!doctype html><meta http-equiv="refresh" content="0;url=en/">\n';
   const stylesheet = 'body { color: rebeccapurple; }\n';
   fs.writeFileSync(path.join(root, 'index.html'), homepage);
@@ -189,6 +189,7 @@ test('the public website build preserves homepage and downloads while publishing
   fs.writeFileSync(path.join(root, 'en', 'index.html'), englishHomepage);
   fs.writeFileSync(path.join(root, 'en.html'), englishRedirect);
   fs.writeFileSync(path.join(root, 'style.css'), stylesheet);
+  fs.writeFileSync(path.join(root, 'version.json'), JSON.stringify({ version: '0.5.9' }));
   fs.mkdirSync(path.join(root, 'downloads'));
   fs.writeFileSync(path.join(root, 'downloads', 'application.zip'), 'public download fixture');
   fs.writeFileSync(path.join(root, 'assets', 'logo.png'), imageBytes('logo.png'));
@@ -205,9 +206,10 @@ test('the public website build preserves homepage and downloads while publishing
   const result = spawnSync(process.execPath, [path.join(root, 'scripts', 'build-public-site.cjs')], { cwd: root, encoding: 'utf8' });
   assert.equal(result.status, 0, result.stderr || result.stdout);
   const output = path.join(root, 'dist', 'site');
-  assert.equal(fs.readFileSync(path.join(output, 'index.html'), 'utf8'), homepage);
+  assert.equal(fs.readFileSync(path.join(output, 'index.html'), 'utf8'), homepage.replace('__VTRANSLATE_VERSION__', '0.5.9'));
   assert.equal(fs.readFileSync(path.join(output, 'en.html'), 'utf8'), englishRedirect);
-  assert.equal(fs.readFileSync(path.join(output, 'en', 'index.html'), 'utf8'), englishHomepage);
+  assert.equal(fs.readFileSync(path.join(output, 'en', 'index.html'), 'utf8'), englishHomepage.replace('__VTRANSLATE_VERSION__', '0.5.9'));
+  assert.deepEqual(JSON.parse(fs.readFileSync(path.join(output, 'version.json'), 'utf8')), { version: '0.5.9' });
   assert.equal(fs.readFileSync(path.join(output, 'style.css'), 'utf8'), stylesheet);
   assert.equal(fs.readFileSync(path.join(output, 'downloads', 'application.zip'), 'utf8'), 'public download fixture');
   const published = JSON.parse(fs.readFileSync(path.join(output, 'ads', 'manifest.json'), 'utf8'));
