@@ -14,6 +14,8 @@ f340119c066b8048928eda643ee94f05d54f983903f0dba4a83071817b8fe8c1  V-Translate-v0
 185e98231f6a4975f84f686e93e1a3e77c816803b2576b3d2c309fdef5356b89  V-Translate-v1.6.0-Windows-x64.zip
 dca149abce592f1b36f0260ff8d02894ca020509bc57b85aa89c9660cefab30c  V-Translate-v1.6.0-macOS-arm64.zip
 867e933e275bfccbdfbc014fbb48d2ea42c71dc105cb5fdac8594d4178e348ca  V-Translate-v1.6.1-Windows-x64.zip
-867e933e275bfccbdfbc014fbb48d2ea42c71dc105cb5fdac8594d4178e348ca  V-Translate-Windows-x64.zip
 c01da635240b2871b23ccbd3edc043650a684f54a036aa951e5616ddb8207101  V-Translate-v1.6.1-macOS-arm64.zip
-c01da635240b2871b23ccbd3edc043650a684f54a036aa951e5616ddb8207101  V-Translate-macOS-arm64.zip
+53ac4083efe481bf325ff010ec69f03bf2ddd59e12b5145ecd47d585f2e99cbd  V-Translate-v1.6.2-Windows-x64.zip
+53ac4083efe481bf325ff010ec69f03bf2ddd59e12b5145ecd47d585f2e99cbd  V-Translate-Windows-x64.zip
+0053bc666227214ca2c109b0bfe16fb2df7dd4154e553fe5d76a753db994a5d9  V-Translate-v1.6.2-macOS-arm64.zip
+0053bc666227214ca2c109b0bfe16fb2df7dd4154e553fe5d76a753db994a5d9  V-Translate-macOS-arm64.zip

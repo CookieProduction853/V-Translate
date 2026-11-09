@@ -1,18 +1,18 @@
 {
-  "version": "1.6.1",
-  "source_commit": "1572dedb16d6974ba3479f9c32b05acc2fa40bfe",
+  "version": "1.6.2",
+  "source_commit": "1c58d2a48d986bf27d0e3b6152b0e42251be07a9",
   "files": [
     {
-      "name": "V-Translate-v1.6.1-Windows-x64.zip",
-      "size_bytes": 26859124,
-      "sha256": "867e933e275bfccbdfbc014fbb48d2ea42c71dc105cb5fdac8594d4178e348ca"
+      "name": "V-Translate-v1.6.2-Windows-x64.zip",
+      "size_bytes": 26894588,
+      "sha256": "53ac4083efe481bf325ff010ec69f03bf2ddd59e12b5145ecd47d585f2e99cbd"
     },
     {
       "name": "V-Translate-Windows-x64.zip",
-      "size_bytes": 26859124,
-      "sha256": "867e933e275bfccbdfbc014fbb48d2ea42c71dc105cb5fdac8594d4178e348ca"
+      "size_bytes": 26894588,
+      "sha256": "53ac4083efe481bf325ff010ec69f03bf2ddd59e12b5145ecd47d585f2e99cbd"
     }
   ],
-  "app_binary_sha256": "a5c0db895d163c804c766234e932749c7d866515a8e4c173440c7263afb83913",
+  "app_binary_sha256": "77220f9ca4f63ac3bce2c4ba3c37101dc1d348b570e71d24a0451ba1368f1887",
   "whisper_vulkan_sha256": "e79d089e9c57a5e2f30cf04fb0eb7ba4462e0b6d1cd2e270fb8c2b0a84a6bf36"
 }

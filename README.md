@@ -34,3 +34,12 @@ as well as translate **ANY** audio into subtitles (within Chrome or Edge).<br />
 [官網](https://cookieproduction853.github.io/V-Translate/)
 
 [Windows v1.6.1 ZIP](https://cookieproduction853.github.io/V-Translate/downloads/V-Translate-v1.6.1-Windows-x64.zip) · [Apple Silicon v1.6.1 ZIP](https://cookieproduction853.github.io/V-Translate/downloads/V-Translate-v1.6.1-macOS-arm64.zip)
+
+## v1.6.2 Windows 與 Apple Silicon 更新
+
+- 關閉播放器時選「否」，會保留背景 Whisper 並重新開啟播放器。
+- 選「是」會結束背景 Whisper。若原先有擷取，重開後可重新選擇要分享的分頁。
+
+[官網](https://cookieproduction853.github.io/V-Translate/)
+
+[Windows v1.6.2 ZIP](https://cookieproduction853.github.io/V-Translate/downloads/V-Translate-v1.6.2-Windows-x64.zip) · [Apple Silicon v1.6.2 ZIP](https://cookieproduction853.github.io/V-Translate/downloads/V-Translate-v1.6.2-macOS-arm64.zip)
