@@ -2,18 +2,18 @@
   "format_version": 1,
   "ads": [
     {
-      "id": "ad-9dbf5a0e95bf74ce",
-      "image": "AD1.png",
+      "id": "ad-35ae7d879131f382",
+      "image": "AD 1.png",
+      "sha256": "7b89fa3493d36bd624d2c4636e783bd94067dd41a8770ebc124d6e59e687a70e",
+      "size_bytes": 127377,
+      "link_url": "https://cookieproduction853.github.io/V-Translate/"
+    },
+    {
+      "id": "ad-75b5aee49c12eb14",
+      "image": "AD2.png",
       "sha256": "9d87a85a8b0847bfc22b6f055f72d9ca6435f0a7fe6db66a1ebece34c1c9bd2f",
       "size_bytes": 962960,
       "link_url": "https://www.youtube.com/watch?v=r8iO0MXlqOA&list=RDr8iO0MXlqOA&start_radio=1"
-    },
-    {
-      "id": "ad-c88218dfec751c6a",
-      "image": "AD2.jpg",
-      "sha256": "d3ef7142200a6d88e473308830ad1a2f8c032b48f0570bc3d0f75f5e45e8c158",
-      "size_bytes": 123810,
-      "link_url": "https://www.youtube.com/watch?v=EAW1zjldjO4"
     },
     {
       "id": "ad-a7a78f67b75b34d4",
@@ -28,6 +28,13 @@
       "sha256": "8ee0eebfc383b98cbb67de3a9147b8a8473cebec516848db3c666db39ba1e16e",
       "size_bytes": 446354,
       "link_url": "https://www.youtube.com/watch?v=YZxHTW5sJu4"
+    },
+    {
+      "id": "ad-4a63c6c46866b04d",
+      "image": "AD5.jpg",
+      "sha256": "d3ef7142200a6d88e473308830ad1a2f8c032b48f0570bc3d0f75f5e45e8c158",
+      "size_bytes": 123810,
+      "link_url": "https://www.youtube.com/watch?v=EAW1zjldjO4"
     }
   ]
 }
