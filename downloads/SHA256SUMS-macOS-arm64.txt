@@ -1,2 +1,2 @@
-dca149abce592f1b36f0260ff8d02894ca020509bc57b85aa89c9660cefab30c  V-Translate-v1.6.0-macOS-arm64.zip
-dca149abce592f1b36f0260ff8d02894ca020509bc57b85aa89c9660cefab30c  V-Translate-macOS-arm64.zip
+c01da635240b2871b23ccbd3edc043650a684f54a036aa951e5616ddb8207101  V-Translate-v1.6.1-macOS-arm64.zip
+c01da635240b2871b23ccbd3edc043650a684f54a036aa951e5616ddb8207101  V-Translate-macOS-arm64.zip

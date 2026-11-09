@@ -25,3 +25,12 @@ as well as translate **ANY** audio into subtitles (within Chrome or Edge).<br />
 套件以 ad-hoc 簽署，尚未經 Apple 公證。請參閱 ZIP 內的安裝說明。
 
 [下載 Apple Silicon v1.6.0](https://cookieproduction853.github.io/V-Translate/downloads/V-Translate-v1.6.0-macOS-arm64.zip)
+
+## v1.6.1 Windows 與 Apple Silicon 更新
+
+- 擷取選單加上 🎤 歌回、💬 雜談和 📼 回放圖示。
+- AD 1 只在本機的主版本或次版本系列落後時顯示。1.6.0 與 1.6.1 同屬 1.6 系列。
+
+[官網](https://cookieproduction853.github.io/V-Translate/)
+
+[Windows v1.6.1 ZIP](https://cookieproduction853.github.io/V-Translate/downloads/V-Translate-v1.6.1-Windows-x64.zip) · [Apple Silicon v1.6.1 ZIP](https://cookieproduction853.github.io/V-Translate/downloads/V-Translate-v1.6.1-macOS-arm64.zip)
