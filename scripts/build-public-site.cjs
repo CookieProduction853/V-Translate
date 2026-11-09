@@ -41,9 +41,15 @@ ordinary(index, false);
 ordinary(english, false);
 ordinary(englishRedirect, false);
 ordinary(stylesheet, false);
+const versionFile = path.join(root, 'version.json');
+ordinary(versionFile, false);
+const { version } = JSON.parse(fs.readFileSync(versionFile, 'utf8'));
+if (typeof version !== 'string' || !/^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)$/.test(version)) {
+  throw Error('version.json must contain a major.minor.patch version');
+}
 const assets = path.join(root, 'assets');
 const downloads = path.join(root, 'downloads');
-const files = [index, english, englishRedirect, stylesheet, ...filesIn(assets, assetTypes), ...filesIn(downloads, downloadTypes)];
+const files = [index, english, englishRedirect, stylesheet, versionFile, ...filesIn(assets, assetTypes), ...filesIn(downloads, downloadTypes)];
 for (const source of files) {
   if (inside(output, fs.realpathSync(source))) throw Error('Public build inputs must be outside dist/site');
 }
@@ -62,7 +68,11 @@ fs.mkdirSync(output);
 for (const source of files) {
   const destination = path.join(output, path.relative(root, source));
   fs.mkdirSync(path.dirname(destination), { recursive: true });
-  fs.copyFileSync(source, destination);
+  if (source === index || source === english) {
+    fs.writeFileSync(destination, fs.readFileSync(source, 'utf8').replaceAll('__VTRANSLATE_VERSION__', version));
+  } else {
+    fs.copyFileSync(source, destination);
+  }
 }
 fs.mkdirSync(path.join(output, 'ads'));
 fs.writeFileSync(path.join(output, 'ads', 'manifest.json'), `${JSON.stringify(feed, null, 2)}\n`);
