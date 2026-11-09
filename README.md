@@ -1,95 +1,11 @@
 # 油字幕 · V-Translate
 
-響應式產品介紹網站，使用 HTML、CSS、JavaScript，無套件相依。
+此軟件為免費 【本地即時 AI 翻譯器】，
+可以實時翻譯 Vtuber 字幕
+(或Chrome /Edge 內**任何聲音**-> 中/英 字幕翻譯)
 
-## v0.5.10 Windows 更新
+vibecoding using Codex
 
-[下載 Windows v0.5.10](https://cookieproduction853.github.io/V-Translate/downloads/V-Translate-v0.5.10-Windows-x64.zip) · [官網](https://cookieproduction853.github.io/V-Translate/)
-
-收音時會先顯示暫定原文，完成聽寫的片段才送去翻譯。Windows Vulkan 模式可同時加速 Whisper 和 Qwen。首次啟動會引導選語言和效能，並在背景準備模型。高／中／低效能的起始緩衝為 8／10／14 秒。播放器音量可增益至 250%，重開時回到 80%。
-
-解壓縮後請將 `whisper-vulkan.zip` 保留在 `V-Translate.exe` 旁。Apple Silicon 下載版為 v0.5.5。
-
-## v0.5.5 維護更新
-
-Windows 從程式開啟的獨立播放器，按右上角 X 會在關閉前詢問：是＝關閉播放器及 Whisper／本機服務，否＝只關播放器，取消＝返回播放器。資料夾內附 `Stop-Whisper.cmd`（Windows）及 `Stop-Whisper.command`（Mac），可獨立停止背景服務，毋須重開軟件。
-
-基於 v0.5.2，保留即時翻譯功能，不包含已棄用的 v0.6.0 影片模式。設定頁新增 Chrome／Edge 開啟及複製播放器連結，方便把播放器移到直播所在的瀏覽器／Profile；毋須更改預設瀏覽器。瀏覽器只允許分享同一 Profile 的分頁。點擊「請準備 AI」提示可直接準備模型。
-
-## Windows 下載
-
-[下載 V-Translate v0.5.5 Windows x64 ZIP](https://github.com/CookieProduction853/V-Translate/raw/refs/heads/main/downloads/V-Translate-v0.5.5-Windows-x64.zip)
-
-先關閉舊背景程式，解壓後開啟 `V-Translate.exe`，不需要 Python。Windows 10／11 64 位元，使用 Chrome／Edge。模型與使用說明見 ZIP 內文件。
-
-[套件說明](downloads/README.md) · [SHA256 校驗碼](downloads/SHA256SUMS.txt)
-
-此公開儲存庫提供產品網站、Windows／macOS 下載包及 `assets/ad` 廣告素材。應用程式開發原始碼另存於私人儲存庫。
-
-## macOS M 系列下載
-
-[下載 V-Translate macOS Apple Silicon ZIP](https://github.com/CookieProduction853/V-Translate/raw/refs/heads/main/downloads/V-Translate-macOS-arm64.zip)
-
-Mac 版與 Windows 版是不同下載檔，適用 M 系列晶片、macOS 13.5 或更新，不適用 Intel Mac。解壓後把 `V-Translate.app` 移到「應用程式」再開啟，不需要 Python、Homebrew 或 Rosetta；首次使用需要網路下載模型。
-
-本測試版使用 ad-hoc 簽署，沒有 Apple Developer ID 簽署或 Apple 公證。若 macOS 阻擋首次開啟，請先嘗試開啟一次，確認來源後到「系統設定 → 隱私權與安全性 → 仍要開啟」。
-
-使用 Chrome／Edge 開啟並登入直播，分享直播分頁及分頁音訊；不支援 Safari／Firefox 的分頁音訊。macOS 要求權限時，允許該瀏覽器的「螢幕／系統音訊錄製」，必要時重新啟動瀏覽器。模型與詳細說明見 ZIP 內文件。
-
-Mac 固定下載路徑為 `downloads/V-Translate-macOS-arm64.zip`；Windows 固定路徑保留 `downloads/V-Translate-Windows-x64.zip`。兩者需各自維護 SHA256 校驗碼。
-
-## 本地開發
-
-```sh
-cd /workspace/V-Translate
-python3 -m http.server 3000 --bind 0.0.0.0
-```
-
-## 自訂內容
-
-- YouTube Demo：`index.html` 直接嵌入 `https://www.youtube-nocookie.com/embed/S1w9Pws00CE`，無須 JavaScript。
-- 品牌圖片：`assets/TASK BAR ICON.png` 用作左上頁首圖示，`assets/app-icon.png` 用作頁尾及分頁圖示。
-- 中英文頁面的三個 Windows 下載按鈕均使用固定的最新版下載路徑 `downloads/V-Translate-Windows-x64.zip`；發布新版時需同步替換這個固定檔名及 SHA256 校驗碼。
-- Hero 保留原本的直播示意視窗，並疊加更新後的 `assets/webUI.png` 人物及對話圖片，中文字幕放在左側 AI 標籤下方，聲波放在日文對話泡泡下方。這是效果示意，並非軟件實際截圖。
-
-## 部署
-
-將此目錄部署至任何靜態網站服務，例如 GitHub Pages。無須建置步驟。已加入 YouTube Demo 影片。
-
-## 主頁設計
-
-`index.html` 是油字幕正式主頁，採用YouTube 風格的白底、黑字、紅色點綴與宋體標題，支援手機排版。已移除風格比較頁及主題切換功能。字體使用系統字體，裝置之間可能略有不同。
-
-## 聯絡資訊
-
-頁尾包含 `vtranslate853@gmail.com` 電郵連結、用戶要求邀請、製作人「曲奇 @Cookie Production」及 Instagram `@cookie_production`。
-
-## 廣告素材與 Pages
-
-圖片與同名 `.url` 可放入 `assets/ad` 或現有的 `ads`，支援 PNG／JPG／WebP。新增時請使用完全相同的檔名主體；同名項目以 `ads` 的內容優先，避免重複播放。
-
-`scripts/build-public-site.cjs` 保留產品主頁、CSS、圖片及下載，並把廣告清單與圖片放到網站的 `ads/`，供 v0.4.6 開機檢查。
-
-使用 GitHub Actions 部署時，在 Settings → Pages → Source 選 GitHub Actions，再執行 Actions → Publish public website and advertisement assets。此公開儲存庫可使用免費的 GitHub Pages；不會將私人應用程式原始碼發佈至網站。
-
-## 網站語言與宣傳連結
-
-- 繁體中文：`index.html`
-- English：`en/index.html`（右上角可切換，直接開啟英文網址不會跳回中文）
-- Pages 英文宣傳網址：`https://cookieproduction853.github.io/V-Translate/en/`
-- `node scripts/build-public-site.cjs` 會同時輸出兩個語言頁面。
-- 最新版固定下載：`https://github.com/CookieProduction853/V-Translate/raw/refs/heads/main/downloads/V-Translate-Windows-x64.zip`。發布新版時，請同步更新這個檔案。
-
-播放器 v0.4.6 的語言選單標示為「介面語言 (Language)」。廣告每張顯示約 10 秒並重複循環，支援 10 張以上（上限 32 張、圖片合計 30 MiB）；下方固定顯示 Fans AD Contact 電郵。
-
-英文版使用 GitHub Pages 靜態目錄路由 `/en/`，不需要另架伺服器。舊 `/en.html` 會自動轉到 `/en/`。
-
-英文版使用自託管 Signika 可變字體（`assets/fonts/Signika-Variable.ttf`），來源為 Google Fonts 官方儲存庫，授權見 `assets/fonts/Signika-OFL.txt`。中文字體與特色介紹區保持不變；英文版不顯示特色介紹區。
-
-Windows v0.4.6 將 Language、AI 狀態及基本引擎選擇放到右上角，進階選項集中在 Settings 齒輪；字幕紀錄有獨立分頁，廣告支援左右手動切換及 10 秒循環。
-
-Windows v0.5.2 已更新右上角 Performance／模型就緒狀態及 Settings 控制；直播分頁超過 20 分鐘無回應時卸載 AI 引擎，並提供重啟 overlay。下載後請先結束舊背景程式，再開啟新套件。版本及來源見 `downloads/release-Windows-x64.json`。
-
-## Apple M 系列 v0.5.2
-
-[下載 Mac v0.5.2 ZIP](https://github.com/CookieProduction853/V-Translate/raw/refs/heads/main/downloads/V-Translate-macOS-arm64.zip)。主程式已由 v0.5.2 程式碼原生重建，保留 CPU／Metal 選擇；不含 v0.6.0 影片模式。更新前先關閉舊背景程式，再解壓及開啟 V-Translate.app。版本、來源與校驗碼見 downloads/release-macOS-arm64.json。
+This software is a free, local, real-time AI translator.
+It can provide instant translation for VTuber subtitles,
+as well as translate **ANY** audio into subtitles (within Chrome or Edge).
