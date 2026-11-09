@@ -2,6 +2,14 @@
 
 響應式產品介紹網站，使用 HTML、CSS、JavaScript，無套件相依。
 
+## v0.5.10 Windows 更新
+
+[下載 Windows v0.5.10](https://cookieproduction853.github.io/V-Translate/downloads/V-Translate-v0.5.10-Windows-x64.zip) · [官網](https://cookieproduction853.github.io/V-Translate/)
+
+收音時會先顯示暫定原文，完成聽寫的片段才送去翻譯。Windows Vulkan 模式可同時加速 Whisper 和 Qwen。首次啟動會引導選語言和效能，並在背景準備模型。高／中／低效能的起始緩衝為 8／10／14 秒。播放器音量可增益至 250%，重開時回到 80%。
+
+解壓縮後請將 `whisper-vulkan.zip` 保留在 `V-Translate.exe` 旁。Apple Silicon 下載版為 v0.5.5。
+
 ## v0.5.5 維護更新
 
 Windows 從程式開啟的獨立播放器，按右上角 X 會在關閉前詢問：是＝關閉播放器及 Whisper／本機服務，否＝只關播放器，取消＝返回播放器。資料夾內附 `Stop-Whisper.cmd`（Windows）及 `Stop-Whisper.command`（Mac），可獨立停止背景服務，毋須重開軟件。
