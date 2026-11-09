@@ -17,3 +17,11 @@ as well as translate **ANY** audio into subtitles (within Chrome or Edge).<br />
 - 已儲存的設定會保留。可在效能設定按「套用建議緩衝」套用新預設。
 
 [下載 Windows v1.6.0](https://cookieproduction853.github.io/V-Translate/downloads/V-Translate-v1.6.0-Windows-x64.zip) · [官網](https://cookieproduction853.github.io/V-Translate/)
+
+## v1.6.0 Apple Silicon 更新
+
+適用 Apple M 系列及 macOS 13.5 或更新。Apple Metal 可加速 Whisper 聽寫和文字翻譯。效能選單提供高效能、均衡、入門，高效能的起始緩衝為 5 秒，播放器滑桿最低可手動調到 3 秒。分享前可選唱回、雜談或回放模式。
+
+套件以 ad-hoc 簽署，尚未經 Apple 公證。請參閱 ZIP 內的安裝說明。
+
+[下載 Apple Silicon v1.6.0](https://cookieproduction853.github.io/V-Translate/downloads/V-Translate-v1.6.0-macOS-arm64.zip)

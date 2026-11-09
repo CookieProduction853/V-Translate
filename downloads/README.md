@@ -4,7 +4,7 @@
 
 先關閉舊版的背景程式，再解壓縮並開啟 `V-Translate.exe`。請保留執行檔旁的 `whisper-vulkan.zip`。首次啟動會選擇語言及效能，並在導覽期間準備模型。
 
-[Apple Silicon v0.5.5 ZIP](V-Translate-macOS-arm64.zip) · [macOS 版本及來源](release-macOS-arm64.json)
+[Apple Silicon v1.6.0 ZIP](V-Translate-v1.6.0-macOS-arm64.zip) · [macOS 版本及來源](release-macOS-arm64.json)
 
 ---
 
