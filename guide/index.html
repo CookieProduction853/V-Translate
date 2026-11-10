@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="油字幕的 macOS Gatekeeper、Windows SmartScreen 首次開啟及 SRT 匯出圖解。">
+  <title>安裝與排錯｜油字幕 V-Translate</title>
+  <style>
+    :root { color-scheme: light; --paper:#f7f5ef; --ink:#18253e; --sub:#47566d; --blue:#234ea0; --line:#d9e0e8; --accent:#fae2a7; }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; background:var(--paper); color:var(--ink); font:1rem/1.65 system-ui,"Microsoft JhengHei","PingFang HK",sans-serif; }
+    main, footer { width:min(100% - 2rem, 66rem); margin-inline:auto; }
+    a { color:var(--blue); text-underline-offset:.2em; }
+    a:focus-visible { outline:3px solid var(--blue); outline-offset:4px; }
+    h1,h2,h3,p,figure { margin:0; }
+    h1 { font-size:clamp(2.45rem,7vw,5.2rem); line-height:1.06; letter-spacing:-.06em; }
+    h2 { font-size:clamp(1.7rem,4vw,2.75rem); line-height:1.15; letter-spacing:-.04em; }
+    h3 { font-size:1.12rem; line-height:1.35; }
+    p, li { overflow-wrap:anywhere; }
+    code { font: .9em ui-monospace,monospace; background:#eaf0f8; padding:.12em .3em; border-radius:.25em; }
+    .hero { background:#152442; color:#fff; border-bottom:6px solid #f0be56; }
+    .hero-inner { width:min(100% - 2rem,66rem); margin-inline:auto; padding:clamp(2rem,6vw,5rem) 0; }
+    .hero a { color:#fff; }
+    .tag { font-size:.77rem; letter-spacing:.16em; font-weight:750; text-transform:uppercase; }
+    .hero .tag { color:#f5ce7d; }
+    .hero h1 { margin:.6rem 0 .85rem; }
+    .hero p { max-width:42rem; color:#e4ebf5; }
+    nav { display:flex; gap:.55rem; flex-wrap:wrap; margin-top:1.5rem; }
+    nav a { padding:.32rem .75rem; border:1px solid #6b7a92; border-radius:2rem; text-decoration:none; font-weight:650; }
+    nav a:hover { background:#28416a; }
+    .note { border-left:4px solid #c78d23; background:#fff1cf; padding:.85rem 1.05rem; margin:1.5rem 0; }
+    section { margin:2.75rem 0; scroll-margin-top:1rem; }
+    .section-title { display:grid; gap:.45rem; border-top:1px solid var(--line); padding-top:1.2rem; margin-bottom:1.1rem; }
+    .section-title .tag { color:var(--blue); }
+    .section-title p, .muted { color:var(--sub); }
+    .steps { list-style:none; margin:0; padding:0; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1rem; }
+    .step { background:#fff; border:1px solid var(--line); border-radius:.8rem; padding:1rem; break-inside:avoid; }
+    .step h3 { display:flex; align-items:center; gap:.58rem; margin-bottom:.52rem; }
+    .number { display:grid; place-items:center; flex:0 0 1.75rem; aspect-ratio:1; background:#20478e; color:#fff; border-radius:50%; font-size:.87rem; }
+    .step figure { margin-top:.8rem; }
+    figure svg { display:block; width:100%; height:auto; border-radius:.42rem; background:#eaf0f8; }
+    figure text { font-family:system-ui,"Microsoft JhengHei","PingFang HK",sans-serif; fill:#172642; }
+    .panel { fill:#fff; stroke:#cbd6e6; }
+    .bar { fill:#e4ebf5; }
+    .quiet { fill:#52617b; }
+    .highlight { fill:#fff2ca; stroke:#9d6619; stroke-width:2; }
+    .win { fill:#134896; }
+    .white { fill:#fff; }
+    figcaption { font-size:.78rem; color:var(--sub); margin-top:.35rem; }
+    dl { display:grid; grid-template-columns:minmax(9rem,1fr) 3fr; gap:.7rem 1rem; margin:0; }
+    dt { font-weight:750; }
+    dd { margin:0; color:var(--sub); }
+    .srt-steps { margin:.9rem 0 0; padding-left:1.45rem; }
+    .srt-steps li { margin:.3rem 0; }
+    .reference, footer { color:var(--sub); font-size:.9rem; }
+    .reference { margin-top:.85rem; }
+    footer { border-top:1px solid var(--line); padding:1rem 0 2rem; }
+    @media (max-width:40rem) { .steps,dl { grid-template-columns:1fr; } dd { margin-bottom:.55rem; } }
+    @media print { body,.hero { background:#fff; color:#18253e; } .hero p,.hero a,.hero .tag { color:#18253e; } nav { display:none; } }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-inner">
+      <a href="https://cookieproduction853.github.io/V-Translate/">油字幕 / V-Translate</a>
+      <p class="tag" style="margin-top:1.4rem">Setup guide · 安裝圖解</p>
+      <h1>第一次開啟油字幕</h1>
+      <p>依照你的電腦選擇以下步驟。圖中用金色標示要按的位置，按鈕名稱會隨系統語言或版本略有不同。</p>
+      <nav aria-label="教學目錄"><a href="#mac">macOS · Gatekeeper</a><a href="#windows">Windows · SmartScreen</a><a href="#troubleshoot">排錯</a><a href="#srt">匯出 .srt</a><a href="#english" lang="en">English</a></nav>
+    </div>
+  </header>
+  <main>
+    <aside class="note"><strong>先核對下載來源。</strong> 只在確認安裝包來自油字幕官網、其 GitHub Release 或開發者提供的試用資料夾，而且檔案與對應的 SHA-256 校驗碼相符時繼續。若系統指明檔案含有惡意程式、檔案損壞，或裝置由公司或學校管理，請先停下並核對來源或詢問管理員。 <a href="https://cookieproduction853.github.io/V-Translate/downloads/SHA256SUMS.txt">官網下載校驗碼</a></aside>
+    <section id="mac" aria-labelledby="mac-title">
+      <div class="section-title"><p class="tag">01 / macOS</p><h2 id="mac-title">Apple Silicon 首次開啟</h2><p>適用 Apple M 系列及 macOS 13.5 或以上。油字幕以 ad-hoc 簽署，尚未經 Apple 公證。Gatekeeper 可能在首次開啟時攔截。</p></div>
+      <ol class="steps">
+        <li class="step"><h3><span class="number">1</span>解壓 ZIP，移到「應用程式」</h3><p>在 Finder 雙擊下載的 ZIP。將解壓後的 <code>V-Translate.app</code> 拖到「應用程式」（Applications），然後雙擊開啟一次。</p>
+          <figure><svg viewBox="0 0 420 156" role="img" aria-label="Finder 中將 V-Translate.app 拖到應用程式資料夾的示意圖"><rect class="panel" x="12" y="12" width="396" height="132" rx="10"/><path class="bar" d="M12 33a10 10 0 0 1 10-10h376a10 10 0 0 1 10 10v11H12Z"/><text x="28" y="38" font-size="12" font-weight="700">Finder · 下載項目</text><rect x="30" y="65" width="143" height="51" rx="8" fill="#e8effb"/><text x="101" y="95" font-size="14" text-anchor="middle" font-weight="700">V-Translate.app</text><path d="M188 91h36m-9-9 9 9-9 9" fill="none" stroke="#31518a" stroke-width="2.5"/><rect class="highlight" x="240" y="65" width="148" height="51" rx="8"/><text x="314" y="88" text-anchor="middle" font-size="15" font-weight="700">應用程式</text><text x="314" y="105" text-anchor="middle" font-size="11">Applications</text></svg><figcaption>示意圖 · Finder</figcaption></figure>
+        </li>
+        <li class="step"><h3><span class="number">2</span>若被攔截，先關閉提示</h3><p>如果 macOS 提示無法驗證開發者或無法檢查是否含有惡意軟件，關閉這個提示。下一步到「系統設定」處理。</p>
+          <figure><svg viewBox="0 0 420 156" role="img" aria-label="Gatekeeper 的首次開啟提示，金色標記關閉提示的按鈕"><rect class="panel" x="42" y="14" width="336" height="128" rx="15"/><circle cx="75" cy="54" r="15" fill="#f6d385"/><text x="75" y="60" text-anchor="middle" font-size="19" font-weight="800">!</text><text x="100" y="52" font-size="15" font-weight="750">無法驗證「V-Translate」</text><text class="quiet" x="100" y="74" font-size="12">macOS 首次開啟提示</text><rect class="highlight" x="217" y="96" width="131" height="29" rx="7"/><text x="282" y="115" text-anchor="middle" font-size="13" font-weight="750">完成 / Done</text></svg><figcaption>示意圖 · Gatekeeper 提示</figcaption></figure>
+        </li>
+        <li class="step"><h3><span class="number">3</span>在「私隱與保安」找「仍要開啟」</h3><p>開啟「系統設定」（System Settings），到「私隱與保安」或「隱私權與安全性」（Privacy &amp; Security），向下捲到安全性，按油字幕旁的「仍要開啟」（Open Anyway）。</p>
+          <figure><svg viewBox="0 0 420 156" role="img" aria-label="系統設定的 Privacy and Security，金色標記 Open Anyway"><rect class="panel" x="12" y="12" width="396" height="132" rx="10"/><rect class="bar" x="23" y="24" width="129" height="109" rx="7"/><text x="35" y="47" font-size="12" font-weight="700">系統設定</text><rect x="29" y="64" width="116" height="27" rx="5" fill="#cfddf2"/><text x="36" y="82" font-size="12" font-weight="700">私隱與保安</text><text x="171" y="48" font-size="15" font-weight="750">安全性</text><text class="quiet" x="171" y="71" font-size="12">V-Translate 已被阻擋</text><rect class="highlight" x="206" y="91" width="175" height="32" rx="7"/><text x="294" y="112" font-size="13" text-anchor="middle" font-weight="750">仍要開啟 / Open Anyway</text></svg><figcaption>示意圖 · Privacy &amp; Security</figcaption></figure>
+        </li>
+        <li class="step"><h3><span class="number">4</span>確認開啟油字幕</h3><p>確認提示上的程式名稱是 <code>V-Translate</code>，按「開啟」或「仍要開啟」。如系統要求，使用登入密碼或 Touch ID 確認。</p>
+          <figure><svg viewBox="0 0 420 156" role="img" aria-label="確認開啟 V-Translate，金色標記 Open 按鈕"><rect class="panel" x="43" y="14" width="334" height="128" rx="14"/><text x="210" y="50" text-anchor="middle" font-size="16" font-weight="750">要開啟「V-Translate」嗎？</text><text class="quiet" x="210" y="74" text-anchor="middle" font-size="12">確認這個 App 的例外</text><text class="quiet" x="135" y="113" text-anchor="middle" font-size="13">取消</text><rect class="highlight" x="188" y="92" width="153" height="31" rx="7"/><text x="264" y="112" text-anchor="middle" font-size="13" font-weight="750">開啟 / Open</text></svg><figcaption>示意圖 · 開啟確認</figcaption></figure>
+        </li>
+      </ol>
+      <p class="reference">找不到「仍要開啟」時，先重新嘗試開啟油字幕，再回到設定找該選項。Apple 說明這個按鈕會在嘗試開啟後保留約一小時。 <a href="https://support.apple.com/en-us/102445">Apple 官方 Gatekeeper 教學</a> · <a href="https://support.apple.com/en-euro/guide/mac-help/mh40617/27/mac/27">開啟例外的有效時間</a></p>
+    </section>
+    <section id="windows" aria-labelledby="win-title">
+      <div class="section-title"><p class="tag">02 / Windows</p><h2 id="win-title">SmartScreen 首次開啟</h2><p>適用 Windows 10／11 x64。Windows 可能在程式的信譽資料不足時顯示 Microsoft Defender SmartScreen 警告。</p></div>
+      <ol class="steps">
+        <li class="step"><h3><span class="number">1</span>先「解壓縮全部」</h3><p>在檔案總管右擊 ZIP，選「解壓縮全部」（Extract All）。進入解壓後的資料夾，保留 <code>V-Translate.exe</code> 與 <code>whisper-vulkan.zip</code> 在一起。</p>
+          <figure><svg viewBox="0 0 420 156" role="img" aria-label="Windows 檔案總管中的 ZIP，金色標記解壓縮全部"><rect class="panel" x="12" y="12" width="396" height="132" rx="10"/><rect class="bar" x="22" y="25" width="376" height="24" rx="5"/><text x="33" y="42" font-size="12" font-weight="700">檔案總管 · 下載</text><text x="35" y="77" font-size="14" font-weight="700">V-Translate-Windows-x64.zip</text><rect class="highlight" x="162" y="94" width="225" height="32" rx="6"/><text x="274" y="115" text-anchor="middle" font-size="13" font-weight="750">解壓縮全部 / Extract All</text></svg><figcaption>示意圖 · 檔案總管</figcaption></figure>
+        </li>
+        <li class="step"><h3><span class="number">2</span>開啟 <code>V-Translate.exe</code></h3><p>在解壓後的資料夾雙擊程式。如果直接開啟播放器，可跳到首次設定。</p>
+          <figure><svg viewBox="0 0 420 156" role="img" aria-label="解壓後的資料夾，金色標記 V-Translate.exe"><rect class="panel" x="12" y="12" width="396" height="132" rx="10"/><text x="28" y="39" font-size="13" font-weight="700">V-Translate-Windows-x64</text><rect class="highlight" x="26" y="53" width="368" height="34" rx="6"/><text x="42" y="75" font-size="14" font-weight="750">V-Translate.exe</text><text class="quiet" x="42" y="111" font-size="13">whisper-vulkan.zip</text></svg><figcaption>示意圖 · 已解壓的資料夾</figcaption></figure>
+        </li>
+        <li class="step"><h3><span class="number">3</span>遇到保護畫面，按「其他資訊」</h3><p>若出現「Windows 已保護您的電腦」（Windows protected your PC），在核對來源後按「其他資訊」（More info），查看被攔截的檔案名稱。</p>
+          <figure><svg viewBox="0 0 420 156" role="img" aria-label="Windows SmartScreen 保護畫面，金色標記 More info"><rect class="win" x="20" y="12" width="380" height="132" rx="10"/><text class="white" x="40" y="48" font-size="18" font-weight="750">Windows 已保護您的電腦</text><text class="white" x="40" y="72" font-size="12">Microsoft Defender SmartScreen</text><rect class="highlight" x="40" y="92" width="157" height="32" rx="6"/><text x="119" y="113" text-anchor="middle" font-size="13" font-weight="750">其他資訊 / More info</text></svg><figcaption>示意圖 · SmartScreen</figcaption></figure>
+        </li>
+        <li class="step"><h3><span class="number">4</span>核對程式名稱後，按「仍要執行」</h3><p>確認檔案是 <code>V-Translate.exe</code>。若頁面提供「仍要執行」（Run anyway）而你已核對來源，可以按該按鈕。受管理的電腦或部分保護設定可能不提供這個選項。</p>
+          <figure><svg viewBox="0 0 420 156" role="img" aria-label="SmartScreen 詳細資訊顯示 V-Translate.exe，金色標記 Run anyway"><rect class="win" x="20" y="12" width="380" height="132" rx="10"/><text class="white" x="40" y="44" font-size="16" font-weight="750">Windows 已保護您的電腦</text><text class="white" x="40" y="72" font-size="13">應用程式 · V-Translate.exe</text><rect class="highlight" x="40" y="93" width="177" height="31" rx="6"/><text x="128" y="114" text-anchor="middle" font-size="13" font-weight="750">仍要執行 / Run anyway</text><text class="white" x="266" y="114" font-size="13">不執行</text></svg><figcaption>示意圖 · SmartScreen 應用程式詳細資訊</figcaption></figure>
+        </li>
+      </ol>
+      <p class="reference">如按鈕不出現，請查明是 SmartScreen、Smart App Control 還是管理員政策。 <a href="https://learn.microsoft.com/en-us/windows/mixed-reality/design/add-custom-home-environments">Microsoft 的 SmartScreen 按鈕示例</a> · <a href="https://support.microsoft.com/en-us/windows/security/windows-security/app-browser-control-in-the-windows-security-app">Windows 保護設定</a></p>
+    </section>
+    <section id="troubleshoot" aria-labelledby="trouble-title">
+      <div class="section-title"><p class="tag">03 / Troubleshooting</p><h2 id="trouble-title">開啟後仍有問題</h2></div>
+      <dl>
+        <dt>播放器沒有打開</dt><dd>先確認已安裝 Chrome 或 Edge。若舊版仍在背景執行，先在舊版按「關閉背景聽寫程式（Whisper）」，再開新版。</dd>
+        <dt>模型尚未準備好</dt><dd>首次使用請選語言和效能，保持網絡連線，等模型準備完成再擷取。如果畫面顯示失敗，先核對網絡和可用空間，再按「準備 AI 模型」。</dd>
+        <dt>有畫面，沒有字幕或聲音</dt><dd>在 Chrome／Edge 分享視窗選「分頁」，並勾選分享分頁音訊。Mac 如要求錄製權限，請在「私隱與保安」授權給實際使用的瀏覽器，再重新開啟瀏覽器。</dd>
+        <dt>Windows 顯示缺少 DLL</dt><dd>若畫面指出缺少 Visual C++ 執行元件，可從 Microsoft 下載 x64 版。 <a href="https://learn.microsoft.com/en-us/cpp/windows/latest-supported-vc-redist">Microsoft Visual C++ Redistributable</a></dd>
+      </dl>
+    </section>
+    <section id="srt" aria-labelledby="srt-title">
+      <div class="section-title"><p class="tag">04 / Captions</p><h2 id="srt-title">下載 .srt 字幕</h2><p>時間從本次擷取開始計算。每段會先放譯文，再放原文。只有原文的段落也會保留。</p></div>
+      <ol class="srt-steps"><li>開始擷取，等第一段定稿字幕出現。</li><li>切到「字幕紀錄」（Caption history）。</li><li>按「匯出 .srt」。較舊版本顯示「匯出字幕」。瀏覽器會下載 <code>V-Translate-日期時間.srt</code>。結束擷取後也可以匯出，開下一次擷取前先儲存上一次的字幕。</li></ol>
+      <figure style="max-width:32rem;margin-top:.8rem"><svg viewBox="0 0 420 116" role="img" aria-label="字幕紀錄頁面，金色標記匯出 .srt"><rect class="panel" x="12" y="12" width="396" height="92" rx="10"/><text x="28" y="47" font-size="16" font-weight="750">字幕紀錄</text><text class="quiet" x="28" y="79" font-size="13">原文及譯文</text><rect class="highlight" x="246" y="30" width="142" height="34" rx="7"/><text x="317" y="52" text-anchor="middle" font-size="14" font-weight="750">匯出 .srt ↓</text></svg><figcaption>示意圖 · 油字幕播放器</figcaption></figure>
+    </section>
+    <section id="english" aria-labelledby="english-title" lang="en">
+      <div class="section-title"><p class="tag">English / Quick steps</p><h2 id="english-title">Install and troubleshoot</h2></div>
+      <dl>
+        <dt>Before opening</dt><dd>Download from the official site or its GitHub Release and check the matching SHA-256. Stop if the OS reports malware, a damaged file, or a managed-device block.</dd>
+        <dt>macOS Gatekeeper</dt><dd>Unzip and move V-Translate.app to Applications. Try opening it once. If blocked, dismiss the warning, then go to System Settings → Privacy &amp; Security → Open Anyway. Confirm the app name and choose Open or Open Anyway. The Apple Silicon build is ad-hoc signed and has not been notarized. <a href="#mac">Illustrated steps</a></dd>
+        <dt>Windows SmartScreen</dt><dd>Extract all files and open V-Translate.exe. If Windows protected your PC appears, check the file under More info. Choose Run anyway if available and you have verified the file. <a href="#windows">Illustrated steps</a></dd>
+        <dt>Share tab audio</dt><dd>Use Chrome or Edge and enable tab audio when sharing. If prompted on a Mac, grant the browser screen and system audio recording permission and restart it.</dd>
+        <dt>Export subtitles</dt><dd>Once finalized captions appear, open Caption history and select Export .srt. Earlier releases label this button Export captions.</dd>
+      </dl>
+    </section>
+  </main>
+  <footer>油字幕 / V-Translate · <a href="https://cookieproduction853.github.io/V-Translate/">官網下載</a> · <a href="https://github.com/CookieProduction853/V-Translate/releases">GitHub Releases</a></footer>
+</body>
+</html>

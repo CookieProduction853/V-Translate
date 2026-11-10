@@ -183,11 +183,14 @@ test('the public website build preserves homepage and downloads while publishing
   const homepage = '<!doctype html><title>Existing public homepage</title><a href="downloads/application.zip">Download</a><a href="version.json">v__VTRANSLATE_VERSION__</a>\n';
   const englishHomepage = '<!doctype html><html lang="en"><title>Existing English homepage</title><a href="index.html">中文</a><a href="../version.json">v__VTRANSLATE_VERSION__</a></html>\n';
   const englishRedirect = '<!doctype html><meta http-equiv="refresh" content="0;url=en/">\n';
+  const guide = '<!doctype html><title>Installation guide</title>\n';
   const stylesheet = 'body { color: rebeccapurple; }\n';
   fs.writeFileSync(path.join(root, 'index.html'), homepage);
   fs.mkdirSync(path.join(root, 'en'));
   fs.writeFileSync(path.join(root, 'en', 'index.html'), englishHomepage);
   fs.writeFileSync(path.join(root, 'en.html'), englishRedirect);
+  fs.mkdirSync(path.join(root, 'guide'));
+  fs.writeFileSync(path.join(root, 'guide', 'index.html'), guide);
   fs.writeFileSync(path.join(root, 'style.css'), stylesheet);
   fs.writeFileSync(path.join(root, 'version.json'), JSON.stringify({ version: '0.5.9' }));
   fs.mkdirSync(path.join(root, 'downloads'));
@@ -208,6 +211,7 @@ test('the public website build preserves homepage and downloads while publishing
   const output = path.join(root, 'dist', 'site');
   assert.equal(fs.readFileSync(path.join(output, 'index.html'), 'utf8'), homepage.replace('__VTRANSLATE_VERSION__', '0.5.9'));
   assert.equal(fs.readFileSync(path.join(output, 'en.html'), 'utf8'), englishRedirect);
+  assert.equal(fs.readFileSync(path.join(output, 'guide', 'index.html'), 'utf8'), guide);
   assert.equal(fs.readFileSync(path.join(output, 'en', 'index.html'), 'utf8'), englishHomepage.replace('__VTRANSLATE_VERSION__', '0.5.9'));
   assert.deepEqual(JSON.parse(fs.readFileSync(path.join(output, 'version.json'), 'utf8')), { version: '0.5.9' });
   assert.equal(fs.readFileSync(path.join(output, 'style.css'), 'utf8'), stylesheet);

@@ -36,10 +36,12 @@ function filesIn(directory, allowed) {
 const index = path.join(root, 'index.html');
 const english = path.join(root, 'en', 'index.html');
 const englishRedirect = path.join(root, 'en.html');
+const guide = path.join(root, 'guide', 'index.html');
 const stylesheet = path.join(root, 'style.css');
 ordinary(index, false);
 ordinary(english, false);
 ordinary(englishRedirect, false);
+ordinary(guide, false);
 ordinary(stylesheet, false);
 const versionFile = path.join(root, 'version.json');
 ordinary(versionFile, false);
@@ -49,7 +51,7 @@ if (typeof version !== 'string' || !/^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)$/
 }
 const assets = path.join(root, 'assets');
 const downloads = path.join(root, 'downloads');
-const files = [index, english, englishRedirect, stylesheet, versionFile, ...filesIn(assets, assetTypes), ...filesIn(downloads, downloadTypes)];
+const files = [index, english, englishRedirect, guide, stylesheet, versionFile, ...filesIn(assets, assetTypes), ...filesIn(downloads, downloadTypes)];
 for (const source of files) {
   if (inside(output, fs.realpathSync(source))) throw Error('Public build inputs must be outside dist/site');
 }
