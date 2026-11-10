@@ -43,3 +43,7 @@ as well as translate **ANY** audio into subtitles (within Chrome or Edge).<br />
 [官網](https://cookieproduction853.github.io/V-Translate/)
 
 [Windows v1.6.2 ZIP](https://cookieproduction853.github.io/V-Translate/downloads/V-Translate-v1.6.2-Windows-x64.zip) · [Apple Silicon v1.6.2 ZIP](https://cookieproduction853.github.io/V-Translate/downloads/V-Translate-v1.6.2-macOS-arm64.zip)
+
+## Source and Code signing policy
+
+[MIT desktop application source](https://github.com/CookieProduction853/V-Translate/tree/main/app) · [Code signing policy](https://github.com/CookieProduction853/V-Translate/blob/main/app/CODE_SIGNING.md) · [Privacy policy](https://github.com/CookieProduction853/V-Translate/blob/main/app/PRIVACY.md). SignPath integration is being prepared; signing is not active and existing downloads remain unchanged.

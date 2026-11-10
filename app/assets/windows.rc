@@ -1,0 +1,8 @@
+// Keep icon ID 1 in sync with src/windows_app.rs.
+1 ICON "app-icon.ico"
+
+// Windows uses this resource for the app window's taskbar relaunch label.
+STRINGTABLE
+BEGIN
+    101 "V-Translate"
+END

@@ -1,0 +1,6 @@
+&[
+    crate::ads::BundledAd { id: "ad-9dbf5a0e95bf74ce", image: "AD1.png", bytes: include_bytes!("AD1.png"), sha256: "9d87a85a8b0847bfc22b6f055f72d9ca6435f0a7fe6db66a1ebece34c1c9bd2f", link_url: "https://www.youtube.com/watch?v=r8iO0MXlqOA&list=RDr8iO0MXlqOA&start_radio=1" },
+    crate::ads::BundledAd { id: "ad-c88218dfec751c6a", image: "AD2.jpg", bytes: include_bytes!("AD2.jpg"), sha256: "d3ef7142200a6d88e473308830ad1a2f8c032b48f0570bc3d0f75f5e45e8c158", link_url: "https://www.youtube.com/watch?v=EAW1zjldjO4" },
+    crate::ads::BundledAd { id: "ad-a7a78f67b75b34d4", image: "AD3.png", bytes: include_bytes!("AD3.png"), sha256: "54c1ca9481996927e3b9dd5aca81904c4eaa000db3ee2bdd72be1dc62d696482", link_url: "https://ticket.rakuten.co.jp/music/jpop/rt4tkw1/" },
+    crate::ads::BundledAd { id: "ad-d735f9e345774ab1", image: "AD4.png", bytes: include_bytes!("AD4.png"), sha256: "8ee0eebfc383b98cbb67de3a9147b8a8473cebec516848db3c666db39ba1e16e", link_url: "https://www.youtube.com/watch?v=YZxHTW5sJu4" },
+]

@@ -1,0 +1,128 @@
+name: Windows build and SignPath
+
+on:
+  push:
+    branches: [main]
+    paths: ['app/**', '.github/workflows/windows-signpath.yml']
+  workflow_dispatch:
+    inputs:
+      sign:
+        description: Request production signing (requires SignPath approval and configuration)
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  windows:
+    runs-on: windows-latest
+    timeout-minutes: 60
+    defaults:
+      run:
+        working-directory: app
+    env:
+      RUSTFLAGS: '-C target-feature=+crt-static'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          components: rustfmt, clippy
+      - name: Check signing prerequisites
+        if: inputs.sign
+        shell: pwsh
+        env:
+          SIGNPATH_API_TOKEN: ${{ secrets.SIGNPATH_API_TOKEN }}
+          SIGNPATH_ORGANIZATION_ID: ${{ vars.SIGNPATH_ORGANIZATION_ID }}
+          SIGNPATH_PROJECT_SLUG: ${{ vars.SIGNPATH_PROJECT_SLUG }}
+          SIGNPATH_SIGNING_POLICY_SLUG: ${{ vars.SIGNPATH_SIGNING_POLICY_SLUG }}
+          SIGNPATH_ARTIFACT_CONFIGURATION_SLUG: ${{ vars.SIGNPATH_ARTIFACT_CONFIGURATION_SLUG }}
+          SIGNPATH_CERTIFICATE_THUMBPRINT: ${{ vars.SIGNPATH_CERTIFICATE_THUMBPRINT }}
+        run: |
+          if ($env:GITHUB_REF -ne 'refs/heads/main') { throw 'Production signing is restricted to main.' }
+          foreach ($name in @('SIGNPATH_API_TOKEN', 'SIGNPATH_ORGANIZATION_ID', 'SIGNPATH_PROJECT_SLUG', 'SIGNPATH_SIGNING_POLICY_SLUG', 'SIGNPATH_ARTIFACT_CONFIGURATION_SLUG', 'SIGNPATH_CERTIFICATE_THUMBPRINT')) {
+            if (![Environment]::GetEnvironmentVariable($name)) { throw "Missing configuration: $name" }
+          }
+      - name: Prepare bundled advertisements
+        run: node scripts/build-ad-feed.cjs
+      - name: Check and test
+        shell: pwsh
+        run: |
+          cargo fmt --all --check
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          cargo test --locked
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          cargo clippy --locked --all-targets -- -D warnings
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          node web/timeline.test.mjs
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          node web/backpressure.test.mjs
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - name: Build from public source
+        run: cargo build --locked --release
+      - name: Check Windows metadata
+        shell: pwsh
+        run: |
+          $version = (Select-String -Path Cargo.toml -Pattern '^version = "([^"]+)"').Matches[0].Groups[1].Value
+          $info = (Get-Item target/release/livesub.exe).VersionInfo
+          if ($info.ProductName -ne 'V-Translate' -or $info.ProductVersion -ne "$version.0") { throw 'Unexpected product metadata' }
+          "version=$version.0" >> $env:GITHUB_ENV
+      - name: Upload executable for origin verification
+        if: inputs.sign
+        id: unsigned
+        uses: actions/upload-artifact@v4
+        with:
+          name: unsigned-vtranslate-executable
+          path: app/target/release/livesub.exe
+          if-no-files-found: error
+      - name: Request signing and wait for manual SignPath approval
+        if: inputs.sign
+        uses: signpath/github-action-submit-signing-request@f6d04783b4569d051e0c80105fe66e82819d0092 # v3
+        with:
+          api-token: ${{ secrets.SIGNPATH_API_TOKEN }}
+          organization-id: ${{ vars.SIGNPATH_ORGANIZATION_ID }}
+          project-slug: ${{ vars.SIGNPATH_PROJECT_SLUG }}
+          signing-policy-slug: ${{ vars.SIGNPATH_SIGNING_POLICY_SLUG }}
+          artifact-configuration-slug: ${{ vars.SIGNPATH_ARTIFACT_CONFIGURATION_SLUG }}
+          github-artifact-id: ${{ steps.unsigned.outputs.artifact-id }}
+          wait-for-completion: true
+          wait-for-completion-timeout-in-seconds: 1800
+          output-artifact-directory: app/signed
+          parameters: |
+            version: "${{ env.version }}"
+      - name: Verify signed executable before packaging
+        if: inputs.sign
+        shell: pwsh
+        env:
+          EXPECTED_THUMBPRINT: ${{ vars.SIGNPATH_CERTIFICATE_THUMBPRINT }}
+        run: |
+          $signature = Get-AuthenticodeSignature signed/livesub.exe
+          if ($signature.Status -ne 'Valid' -or !$signature.TimeStamperCertificate) { throw 'Signature or timestamp validation failed' }
+          if ($signature.SignerCertificate.Thumbprint -ne $env:EXPECTED_THUMBPRINT) { throw 'Unexpected signing certificate' }
+          $original = [IO.File]::ReadAllBytes((Resolve-Path target/release/livesub.exe))
+          $signed = [IO.File]::ReadAllBytes((Resolve-Path signed/livesub.exe))
+          if ([Convert]::ToHexString([Security.Cryptography.SHA256]::HashData($original)) -eq [Convert]::ToHexString([Security.Cryptography.SHA256]::HashData($signed))) { throw 'Executable was not changed by signing' }
+          Copy-Item signed/livesub.exe target/release/livesub.exe -Force
+      - name: Collect dependency licenses
+        run: node scripts/collect-licenses.cjs
+      - name: Package and verify final ZIP checksums
+        shell: pwsh
+        run: ./scripts/package-windows.ps1
+      - name: Test packaged local server
+        env:
+          LIVESUB_BINARY: ${{ github.workspace }}/app/dist/V-Translate-Windows-x64/V-Translate.exe
+        run: node tests/backend-smoke.cjs
+      - name: Retain package
+        uses: actions/upload-artifact@v4
+        with:
+          name: V-Translate-Windows-x64-${{ inputs.sign && 'signed' || 'unsigned' }}
+          path: |
+            app/dist/V-Translate-*.zip
+            app/dist/SHA256SUMS-Windows-x64.txt
+          if-no-files-found: error

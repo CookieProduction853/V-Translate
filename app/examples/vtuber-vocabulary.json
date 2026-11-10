@@ -1,0 +1,27 @@
+{
+  "format_version": 1,
+  "name": "星乃測試台・日文詞彙示例",
+  "language": "ja",
+  "terms": [
+    {
+      "source": "星乃ルミ",
+      "reading": "ほしのるみ",
+      "target": "星乃露米"
+    },
+    {
+      "source": "こんルミ",
+      "reading": "こんるみ",
+      "target": "露米大家好"
+    },
+    {
+      "source": "おつルミ",
+      "reading": "おつるみ",
+      "target": "露米辛苦了"
+    },
+    {
+      "source": "星くず隊",
+      "reading": "ほしくずたい",
+      "target": "星塵隊"
+    }
+  ]
+}

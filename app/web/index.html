@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>油字幕 v1.6.2 · 本地 AI Vtuber 即時字幕</title>
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/app-icon.png" type="image/png">
+  <link rel="apple-touch-icon" href="/app-icon.png">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <header class="topbar" inert>
+    <a class="brand" href="#"><img id="brand-image" class="brand-icon" src="/app-icon.png" width="48" height="48" alt="" hidden><span id="brand-icon-fallback" class="brand-icon" aria-hidden="true">◈</span><span><span id="brand-name">油字幕</span><span id="app-version" class="version-badge">v1.6.2</span><small>本地 AI Vtuber 即時字幕</small></span></a>
+    <div class="top-status header-controls">
+      <div id="header-language" class="header-language"><img class="language-icon" src="/ui-language.png" alt="" width="42" height="42"><label class="interface-language" for="interface-language"><span id="interface-language-label">介面語言 (Language)</span><select id="interface-language"><option value="zh-Hant">繁體中文</option><option value="en">English</option></select></label></div>
+      <div id="header-engine-status" class="header-engine-status" role="status"><button id="open-engine-settings" class="engine-status" type="button" aria-label="開啟 AI 設定" aria-controls="settings-dialog"><span id="engine-dot" class="dot"></span><span class="engine-copy"><strong id="engine-title">正在連接本機程式</strong><small id="engine-detail">初次使用需要下載 AI 模型</small></span></button></div>
+      <button id="setup" class="quiet" type="button">準備 AI 模型</button>
+      <div id="header-engine-choice" class="header-engine-choice"><label class="field compute-field"><span>AI 引擎</span><select id="backend" disabled><option value="cpu">CPU（所有電腦）</option><option value="vulkan">顯卡 Vulkan（AMD／NVIDIA）</option></select></label></div>
+      <button id="model-settings" class="settings-gear performance-button" type="button" aria-label="效能設定" disabled><img src="/ui-performance.png" alt="" width="36" height="36"><small>Performance</small></button>
+      <button id="open-settings" class="settings-gear" type="button" aria-label="設定 (Settings)" aria-controls="settings-dialog" aria-haspopup="dialog"><span aria-hidden="true">⚙</span><small>Settings</small></button>
+    </div>
+  </header>
+  <main inert>
+    <nav class="view-tabs" role="tablist" aria-label="觀看分頁">
+      <button id="player-tab" class="view-tab" role="tab" type="button" aria-selected="true" aria-controls="player-view" tabindex="0">播放器</button>
+      <button id="transcript-tab" class="view-tab" role="tab" type="button" aria-selected="false" aria-controls="transcript-view" tabindex="-1">字幕紀錄</button>
+    </nav>
+    <div id="message" class="message" role="alert" hidden></div>
+    <section id="player-view" class="workspace" role="tabpanel" aria-labelledby="player-tab">
+      <div class="view-column">
+        <div id="live-source" class="live-source" hidden>
+          <strong id="live-source-label"></strong>
+          <span id="live-source-text" dir="auto"></span>
+        </div>
+        <div id="player-shell" class="player-shell">
+          <video id="video" playsinline></video>
+          <div id="empty" class="empty-state"><div class="play-art">▶</div><h2>把正在看的直播帶進來</h2><p>在 Chrome 或 Edge 開啟直播並正常登入<br>選擇直播分頁，同時分享「分頁音訊」</p><button id="start" class="primary" type="button">選擇直播分頁 <span>↗</span></button><small>支援你有權觀看的會限直播 · 不需提供帳號密碼</small><button id="capture-browser-help" class="text-button" type="button">找不到其他瀏覽器／Profile 的直播？</button></div>
+          <div id="buffer-cover" class="buffer-cover" hidden><span class="spinner"></span><strong id="buffer-title">正在緩衝影音</strong><span id="catchup-countdown" class="catchup-countdown" role="timer" aria-label="恢復播放倒數" aria-live="off" hidden></span><small id="buffer-detail">準備第一批同步字幕</small></div>
+          <div id="subtitles" class="subtitles" aria-live="off"><div id="translated" class="translated"></div><div id="original" class="original"></div></div>
+          <div id="player-state" class="player-state" hidden><span class="pulse"></span><span id="playback-label">準備中</span></div>
+        </div>
+        <div class="transport">
+          <div class="transport-left"><button id="pause" class="quiet" type="button" disabled>暫停</button><div class="stop-stack"><button id="stop" class="quiet danger" type="button" disabled>結束擷取</button><button id="quit" class="quiet danger shutdown" type="button" aria-describedby="quit-hint">關閉背景聽寫程式(whisper)</button><small id="quit-hint">結束擷取並關閉整個背景伺服器（聽寫與翻譯）。</small></div><span id="live-delay" class="muted">尚未擷取</span></div>
+          <div class="transport-right"><label class="volume-label">音量 <input id="volume" type="range" min="0" max="2.5" value="0.8" step="0.05" aria-label="播放器音量"><output id="volume-value" for="volume">80%</output></label><button id="fullscreen" class="icon-button" type="button" aria-label="全螢幕">⛶</button></div>
+        </div>
+        <p id="boost-active" class="boost-warning" role="status" hidden>音量增益已啟用。請留意突然變大的聲音。</p>
+        <div class="how-it-works"><span>01 開啟直播</span><i>→</i><span>02 分享分頁影音</span><i>→</i><span>03 觀看同步字幕</span></div>
+        <section class="vocabulary-panel" aria-labelledby="vocabulary-title">
+          <div class="section-title"><div><span class="eyebrow">VTuber 用語</span><h2 id="vocabulary-title">你的推，熟悉的用語。</h2></div><span>詞彙包</span></div>
+          <p class="vocabulary-copy">匯入 JSON、CSV、TSV 或 TXT 詞彙包，讓 AI 參考人名、口頭禪和指定譯名。</p>
+          <div class="vocabulary-toolbar"><label class="field">目前使用<select id="vocabulary-select" disabled><option value="">不使用詞彙包</option></select></label><button id="import-vocabulary" class="quiet" type="button" disabled>＋ 匯入詞彙包</button><button id="remove-vocabulary" class="text-button danger" type="button" disabled>移除此包</button></div>
+          <input id="vocabulary-file" type="file" accept=".json,.csv,.tsv,.txt,application/json,text/csv,text/tab-separated-values,text/plain" hidden>
+          <div class="vocabulary-foot"><small id="vocabulary-detail">正在讀取詞彙包…</small><button id="example-vocabulary" class="text-button" type="button">下載範例 JSON ↓</button></div>
+          <div class="vocabulary-exports"><button id="export-vocabulary-csv" class="text-button" type="button" disabled>匯出目前詞彙 CSV ↓</button><button id="export-vocabulary-tsv" class="text-button" type="button" disabled>匯出目前詞彙 TSV ↓</button></div>
+          <p class="hint">檔案須為 UTF-8（可含 BOM），上限 64 KiB。CSV／TSV 使用 source、target 兩欄，可加 reading 欄；TXT 每行一個原文用語。可先用試算表另存 CSV／TSV；不支援 XLSX、TBX、TMX 或任意模型權重（.bin／.gguf／.safetensors）。詞彙包提供提示，效果取決於聲音及模型。擷取期間請先結束擷取，再切換用語。</p>
+        </section>
+        <section id="sponsor-slot" class="sponsor-slot" aria-label="廣告／贊助輪播">
+          <div class="sponsor-toolbar"><div class="sponsor-label">廣告／贊助</div><div class="sponsor-controls"><small id="sponsor-slide-position" aria-live="off">1 / 1</small><button id="sponsor-rotation-pause" type="button" aria-pressed="false" disabled>暫停輪播</button></div></div>
+          <div id="sponsor-placeholder" class="sponsor-content">
+            <div class="sponsor-copy"><p class="sponsor-eyebrow">合作版位預留</p><h2 id="sponsor-title">一起支持跨語言的觀看體驗。</h2><p>此處為廣告／贊助預留版位，歡迎來信洽談合作。</p></div>
+            <a id="sponsor-contact" class="sponsor-contact" href="mailto:vtranslate853@gmail.com">洽談贊助合作 ↗</a>
+          </div>
+          <button id="sponsor-previous" class="sponsor-arrow sponsor-arrow-previous" type="button" aria-label="上一張廣告" disabled><span aria-hidden="true">‹</span></button>
+          <button id="sponsor-next" class="sponsor-arrow sponsor-arrow-next" type="button" aria-label="下一張廣告" disabled><span aria-hidden="true">›</span></button>
+          <a id="sponsor-image-link" class="sponsor-image-link" target="_blank" rel="noopener noreferrer sponsored" aria-label="開啟贊助連結" hidden><img id="sponsor-image" alt="贊助圖片" decoding="async" referrerpolicy="no-referrer"></a>
+        </section>
+        <p id="fans-ad-contact" class="fans-ad-contact">Fans AD Contact: <a id="fans-ad-email" href="mailto:vtranslate853@gmail.com">vtranslate853@gmail.com</a></p>
+      </div>
+      <aside class="settings-column">
+        <section id="playback-settings" class="settings settings-card" aria-labelledby="playback-settings-title">
+          <div class="section-title"><h2 id="playback-settings-title">語言與播放設定</h2><span>本機</span></div>
+        <label class="field">直播語言<select id="language"><option value="ja">日文</option><option value="en">英文</option><option value="ko">韓文</option><option value="zh">中文</option><option value="auto">自動偵測</option></select></label>
+        <label class="field">翻譯語言<select id="target"><option value="繁體中文">繁體中文</option><option value="English">English</option><option value="日本語">日本語</option></select></label>
+        <label class="field capture-quality-field">擷取畫質<select id="capture-quality" aria-describedby="capture-quality-hint capture-quality-detail"><option value="720p">720p · 省資源</option><option value="1080p" selected>1080p · 清晰</option><option value="1440p">1440p · 高畫質</option><option value="source">來源解析度</option></select></label>
+        <p id="capture-quality-hint" class="hint">畫質與 AI 效能設定分開。高畫質需要更多編碼資源；實際解析度受來源及瀏覽器限制，不會提升來源本身的清晰度。</p>
+        <p id="capture-quality-detail" class="hint capture-quality-detail" role="status">開始擷取後顯示實際解析度。</p>
+        <p id="capture-mode-status" class="hint" role="status" hidden></p>
+        <p id="song-mode-status" class="hint" role="status" hidden></p>
+        <div class="divider"></div>
+        <div id="delay-tour-target">
+          <label class="range-title" for="delay">起始緩衝 <strong><span id="delay-value">5</span> 秒</strong></label>
+          <input id="delay" type="range" min="3" max="120" step="1" value="5">
+        </div>
+        <p class="hint">AI 需要時間聽寫及翻譯。緩衝越長，播放越穩定；實際延遲可能隨處理速度增加。</p>
+        <label class="toggle-row"><span>等待字幕完成再播放<small>字幕落後時，自動暫停畫面和聲音</small></span><input id="wait-subtitles" type="checkbox" checked></label>
+        <label class="toggle-row"><span>顯示原文</span><input id="show-original" type="checkbox" checked></label>
+        <label class="range-title" for="offset">字幕時間微調 <strong><span id="offset-value">0.0</span> 秒</strong></label>
+        <input id="offset" type="range" min="-3" max="3" step="0.1" value="0">
+        <p class="hint">正值讓字幕提早，負值讓字幕延後。可修正瀏覽器擷取的細微時間差。</p>
+        <div class="session-stats"><div><span>已處理音訊</span><strong id="processed">—</strong></div><div><span>最近一次 AI 處理</span><strong id="inference-time">—</strong></div></div>
+        </section>
+      </aside>
+    </section>
+    <section id="transcript-view" class="transcript-view" role="tabpanel" aria-labelledby="transcript-tab" hidden>
+      <p class="transcript-view-hint">字幕持續更新，切換分頁不會中斷播放或擷取。</p>
+      <div class="transcript-panel"><div class="section-title"><h2>字幕紀錄</h2><button id="export" class="text-button" type="button" disabled>匯出字幕 ↓</button></div><div id="transcript" class="transcript"><p class="transcript-empty">開始擷取後，原文及譯文會顯示在這裡。</p></div></div>
+    </section>
+  </main>
+  <footer class="app-footer">
+    <div class="footer-brand"><strong>油字幕</strong><p>本地 AI Vtuber 即時字幕</p></div>
+    <div class="footer-contact"><p class="footer-label">聯絡我</p><a id="contact-email" href="mailto:vtranslate853@gmail.com">vtranslate853@gmail.com</a><p>歡迎聯絡及提出用戶要求</p></div>
+    <div class="footer-credit"><p>Power by 曲奇 @Cookie Production</p><a id="instagram-link" href="https://www.instagram.com/cookie_production/" target="_blank" rel="noopener noreferrer">Instagram @cookie_production ↗</a></div>
+  </footer>
+  <dialog id="settings-dialog" class="settings-dialog" aria-labelledby="settings-title">
+    <div class="settings-dialog-heading"><div><span class="eyebrow">PREFERENCES</span><h2 id="settings-title">設定 (Settings)</h2></div><button id="close-settings" class="quiet" type="button" aria-label="關閉設定">關閉 ✕</button></div>
+    <div id="settings-header-controls"></div>
+    <section class="settings-appearance" aria-labelledby="settings-appearance-title"><h3 id="settings-appearance-title">介面設計</h3><div class="theme-options"><button type="button" class="theme-card" data-theme-choice="studio" aria-pressed="true"><span class="theme-swatch swatch-studio" aria-hidden="true"><i></i><i></i></span><span><strong>深色模式</strong><small>柔和深色介面</small></span><span class="theme-check" aria-hidden="true">✓</span></button>
+<button type="button" class="theme-card" data-theme-choice="light" aria-pressed="false"><span class="theme-swatch swatch-light" aria-hidden="true"><i></i><i></i></span><span><strong>日光</strong><small>清楚明亮的介面</small></span><span class="theme-check" aria-hidden="true">✓</span></button></div></section>
+    <section class="browser-transfer" aria-labelledby="browser-transfer-title"><h3 id="browser-transfer-title">切換瀏覽器／Profile</h3>
+      <p id="browser-transfer-hint" class="hint">播放器與直播必須在同一瀏覽器、同一個 Profile。先結束舊播放器的擷取，再複製播放器連結，貼到直播所在的 Chrome／Edge Profile，然後選擇直播分頁。不需更改系統預設瀏覽器。</p>
+      <div class="settings-actions"><button id="open-in-chrome" class="quiet" type="button">在 Chrome 開啟</button><button id="open-in-edge" class="quiet" type="button">在 Edge 開啟</button><button id="copy-player-link" class="quiet" type="button">複製播放器連結</button></div>
+      <p id="browser-transfer-status" role="status" aria-live="polite"></p><label id="player-link-fallback" class="field" hidden>播放器連結<input id="player-link" type="text" readonly autocomplete="off" spellcheck="false"></label>
+    </section>
+    <section class="settings-management" aria-labelledby="settings-management-title"><h3 id="settings-management-title">AI 模型與效能</h3><p class="hint">首次使用請先準備 AI 模型，再開始擷取。</p><div class="settings-actions"><span id="compute-badge" class="local-badge">● 本機 AI</span><button id="open-models" class="quiet" type="button">▧ 模型資料夾</button></div>        <div class="model-location" id="model-location" hidden><span>模型資料夾</span><code id="model-path"></code><small>要刪除使用中的模型，請先結束擷取並關閉本機程式，再於資料夾刪除。下次準備 AI 時可重新下載。</small></div>
+</section>
+        <section id="ai-settings" class="settings settings-card" aria-labelledby="ai-settings-title">
+          <div class="section-title"><h2 id="ai-settings-title">模型與顯卡設定</h2><span>本機</span></div>
+
+        <p id="compute-hint" class="hint compute-hint">使用 AMD Radeon／NVIDIA GeForce：先選「顯卡 Vulkan」，再按「偵測顯卡」選取裝置。顯卡同時加速 Whisper 聽寫和文字翻譯。</p>
+        <p id="macos-capture-hint" class="hint" hidden>Mac 請使用最新版 Chrome／Edge 分享直播分頁及分頁音訊；Safari／Firefox 不支援本播放器需要的分頁音訊。若擷取被拒絕，請到「系統設定 → 隱私權與安全性 → 螢幕與系統音訊錄製」允許此瀏覽器，必要時重新開啟瀏覽器。</p>
+        <div id="gpu-settings" class="gpu-settings" hidden>
+          <label class="field">AI 顯卡<select id="gpu-device" disabled><option value="">自動選擇</option></select></label>
+          <button id="detect-gpu" class="text-button" type="button" disabled>偵測顯卡</button>
+          <small id="gpu-detail">可先按「偵測顯卡」下載 Vulkan 元件並選取顯卡，再準備 AI 模型。</small>
+        </div>
+        <div class="translation-model-settings">
+          <label class="field">翻譯模型<select id="translation-model" aria-describedby="translation-model-detail translation-model-hint" disabled><option value="">內建 Qwen（依效能設定自動選擇）</option></select></label>
+          <div class="translation-model-actions"><button id="open-translation-models" class="text-button" type="button">開啟自訂模型資料夾</button><button id="refresh-translation-models" class="text-button" type="button" disabled>重新掃描</button></div>
+          <code id="translation-model-path" hidden></code>
+          <p id="translation-model-detail" class="hint" role="status">正在掃描自訂翻譯模型…</p>
+          <p id="translation-model-hint" class="hint">將 .gguf 檔案直接放入 models/translation 資料夾，再按「重新掃描」。先結束擷取再切換；儲存後請重新準備 AI。</p>
+          <a class="text-button model-library-link" href="https://ollama.com/search?q=translate" target="_blank" rel="noopener noreferrer">尋找翻譯模型（Ollama） ↗</a>
+          <p class="hint model-compatibility-hint">Ollama 模型庫用來找模型；套件／Modelfile 並非直接 GGUF 下載。請取得支援所需語言、與 llama.cpp 相容的 instruct／chat GGUF。CPU 可先試小型 Q4_K_M 量化；相容性與翻譯品質依模型而異。</p>
+        </div>
+        </section>
+    <details class="settings-help"><summary>使用說明</summary><div class="notes-panel"><h3>安心沿用你的觀看方式</h3><p>請在瀏覽器登入並開啟直播，再選擇分享分頁。會限內容依平台與你的帳號權限播放；受保護而無法擷取的畫面無法在此播放。</p><p>建議使用最新版 Chrome／Edge。Firefox 目前不支援此播放器需要的分頁音訊擷取。初次下載模型需要網路，字幕處理在本機進行。關閉播放器後，背景程式會在 3 分鐘內退出；也可按播放器下方的「關閉背景聽寫程式(whisper)」立即關閉。</p><p id="gpu-platform-note">AMD Radeon（包括 RX 9070）及支援 Vulkan 的 NVIDIA GeForce 可使用顯卡聽寫和翻譯；請更新對應品牌的顯卡驅動，不需另外安裝 CUDA Toolkit。若顯卡模式無法啟動，請選 CPU 後重新準備 AI。</p><p id="windows-runtime-note">若 AI 引擎提示缺少 Windows DLL，可安裝 <a href="https://aka.ms/vs/17/release/vc_redist.x64.exe" target="_blank" rel="noopener noreferrer">Microsoft VC++ x64 執行元件</a>，再重新開啟程式。</p><p>請保持來源分頁播放。瀏覽器會嘗試停播來源聲音，避免雙重聲音。若手動靜音來源後字幕停止，請取消靜音並檢查分頁音訊分享。</p></div></details>
+  </dialog>
+  <dialog id="setup-dialog" aria-labelledby="setup-title">
+    <form id="setup-form">
+      <div class="section-title"><h2 id="setup-title">下載前，先選擇適合的 AI 設定</h2><button id="close-model-settings" class="text-button" type="button" aria-label="關閉設定">關閉 ✕</button></div>
+      <p class="dialog-copy">依電腦選擇起點，再按需要調整。實際速度受直播語言、聲音、模型及其他程式影響；以下硬體僅作選擇參考，並非效能測試或即時速度保證。</p>
+      <label class="field">電腦效能<select id="performance"><option value="low">入門／省資源 · Intel i5-8250U／內顯 參考</option><option value="balanced">均衡 · Ryzen 5 3600X／GTX 1650 參考</option><option value="high">高效能 · RX 9070 或 RTX 5070 參考</option></select></label>
+      <p id="preset-detail" class="hint"></p><button id="apply-preset-buffer" class="quiet" type="button">套用建議緩衝</button>
+      <details id="advanced-settings"><summary>進階：聽寫模型、執行緒與緩衝</summary><div class="advanced-grid">
+        <label class="field">Whisper 聽寫模型<select id="whisper-model"><option value="tiny">tiny · 約 75 MB · 較省資源</option><option value="base">base · 約 148 MB · 均衡</option><option value="small">small · 約 488 MB · 較高辨識品質</option></select></label>
+        <label class="field">CPU 執行緒（1–8）<input id="cpu-threads" type="number" min="1" max="8" required></label>
+        <label class="field">每段音訊（4–12 秒）<input id="chunk-seconds" type="number" min="4" max="12" required></label>
+        <label class="field">起始緩衝（5–120 秒）<input id="buffer-seconds" type="number" min="5" max="120" required></label>
+      </div></details>
+      <p id="setup-error" class="hint" role="alert" hidden></p>
+      <div class="dialog-actions"><button id="save-model-settings" class="quiet" type="button">儲存設定</button><button id="save-and-setup" class="primary" type="submit">儲存並準備 AI 模型</button></div>
+    </form>
+  </dialog>
+  <dialog id="idle-overlay" class="idle-overlay" aria-labelledby="idle-title" aria-describedby="idle-detail">
+    <h2 id="idle-title">Whisper 已暫停</h2>
+    <p id="idle-detail">直播分頁已超過 20 分鐘沒有回應，AI 已暫停並釋放資源。</p>
+    <p>重啟後請重新選擇直播分頁。</p>
+    <p id="resume-error" role="alert" hidden></p>
+    <button id="resume-whisper" class="primary" type="button">重啟 Whisper</button>
+  </dialog>
+  <dialog id="first-setup" aria-labelledby="first-title">
+    <h2 id="first-title">初次設定</h2>
+    <p>先選擇介面語言和電腦效能，再完成操作導覽。</p>
+    <form id="first-form">
+      <label class="field">介面語言 (Language)<select id="first-language" translate="no" required><option value="zh-Hant">繁體中文</option><option value="en">English</option></select></label>
+      <label class="field">電腦效能<select id="first-performance" required><option value="">請選擇效能配置</option><option value="high">高效能 · RX 9070 或 RTX 5070 參考</option><option value="balanced">均衡 · Ryzen 5 3600X／GTX 1650 參考</option><option value="low">入門／省資源 · Intel i5-8250U／內顯 參考</option></select></label>
+      <p id="first-error" role="alert" hidden></p>
+      <button id="first-next" class="primary" type="submit">開始操作導覽</button>
+    </form>
+  </dialog>
+  <dialog id="first-tour" aria-labelledby="tour-title" aria-describedby="tour-detail">
+    <div id="tour-spotlight" aria-hidden="true"></div>
+    <div id="tour-card">
+      <p id="tour-step" class="eyebrow"></p>
+      <h2 id="tour-title"></h2>
+      <p id="tour-detail"></p>
+      <p id="tour-error" role="alert" hidden></p>
+      <button id="tour-next" class="primary" type="button" autofocus>下一步</button>
+    </div>
+  </dialog>
+  <dialog id="first-model-preparation" aria-labelledby="first-model-title" aria-describedby="first-model-detail">
+    <h2 id="first-model-title">正在下載及準備 AI 模型，請等待</h2>
+    <p id="first-model-detail" role="status"></p>
+    <div id="first-model-progress-row">
+      <progress id="first-model-progress" max="100" aria-labelledby="first-model-title" value="0"></progress>
+      <output id="first-model-percent">0%</output>
+    </div>
+    <div id="first-model-actions" class="dialog-actions" hidden>
+      <button id="first-model-settings" class="quiet" type="button">返回設定</button>
+      <button id="first-model-retry" class="primary" type="button">重新準備</button>
+    </div>
+  </dialog>
+  <dialog id="volume-warning" aria-labelledby="volume-warning-title" aria-describedby="volume-warning-detail">
+    <h2 id="volume-warning-title">音量將超過 100%</h2>
+    <p id="volume-warning-detail">增益可能使聲音突然變大、失真或傷害聽力。使用耳機時請先調低系統音量，再慢慢調高。</p>
+    <form method="dialog" class="dialog-actions">
+      <button class="quiet" value="cancel" autofocus>保持 100%</button>
+      <button class="primary" value="confirm">啟用音量增益</button>
+    </form>
+  </dialog>
+  <dialog id="capture-mode-dialog" aria-labelledby="capture-mode-title">
+    <h2 id="capture-mode-title">選擇本次擷取模式</h2>
+    <p>選好模式後，瀏覽器會讓你選擇要分享的分頁。</p>
+    <div class="capture-modes">
+      <button class="quiet" type="button" data-capture-mode="song"><span><span aria-hidden="true">🎤</span> <strong>歌回（音質優先）</strong></span><span>256 kbps 音訊。卡頓時自動增加緩衝。</span></button>
+      <button class="quiet" type="button" data-capture-mode="chat"><span><span aria-hidden="true">💬</span> <strong>雜談（低緩存優先）</strong></span><span>128 kbps 音訊。起始緩衝以效能配置的建議秒數為上限。</span></button>
+      <button class="quiet" type="button" data-capture-mode="replay"><span><span aria-hidden="true">📼</span> <strong>回放（翻譯質量優先）</strong></span><span>至少 20 秒緩衝，讓翻譯參考相鄰原文，等字幕完成再播放。</span></button>
+    </div>
+    <form method="dialog" class="dialog-actions"><button class="quiet" type="submit">取消</button></form>
+  </dialog>
+  <script type="module" src="/app.js"></script>
+</body>
+</html>

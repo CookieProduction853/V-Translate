@@ -96,3 +96,7 @@ The header contains Language, AI status, AI engine and Settings. Advanced settin
 Download the separate **macOS arm64** ZIP for Apple Silicon Macs running macOS 13.5 or later. Move `V-Translate.app` to Applications, then open it. Python, Homebrew and Rosetta are not required; the first model download needs Internet access. Whisper uses CPU; translation supports CPU or Apple Metal.
 
 This preview is ad-hoc signed and is not Apple Developer ID signed or notarized. If blocked, attempt to open it once, verify its source, then use **System Settings → Privacy & Security → Open Anyway**. Use Chrome or Edge, grant browser screen/system-audio recording permission when prompted, and share the live-stream tab with tab audio. Native CI verified real-sample CPU and Metal inference; live capture and performance on physical Macs remain unverified.
+
+## Code signing policy
+
+[Code signing policy](https://github.com/CookieProduction853/V-Translate/blob/main/app/CODE_SIGNING.md) · [Privacy policy](https://github.com/CookieProduction853/V-Translate/blob/main/app/PRIVACY.md) · [MIT source code](https://github.com/CookieProduction853/V-Translate/tree/main/app). SignPath signing is not active. Existing downloads predate this integration and do not include the new background-network opt-out launcher.
