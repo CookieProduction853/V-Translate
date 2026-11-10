@@ -39,7 +39,7 @@
     .step h3 { display:flex; align-items:center; gap:.58rem; margin-bottom:.52rem; }
     .number { display:grid; place-items:center; flex:0 0 1.75rem; aspect-ratio:1; background:#20478e; color:#fff; border-radius:50%; font-size:.87rem; }
     .step figure { margin-top:.8rem; }
-    figure svg { display:block; width:100%; height:auto; border-radius:.42rem; background:#eaf0f8; }
+    figure svg, figure img { display:block; width:100%; height:auto; border-radius:.42rem; background:#eaf0f8; }
     figure text { font-family:system-ui,"Microsoft JhengHei","PingFang HK",sans-serif; fill:#172642; }
     .panel { fill:#fff; stroke:#cbd6e6; }
     .bar { fill:#e4ebf5; }
@@ -48,6 +48,11 @@
     .win { fill:#134896; }
     .white { fill:#fff; }
     figcaption { font-size:.78rem; color:var(--sub); margin-top:.35rem; }
+    .screenshot { max-width:44rem; margin-top:.95rem; }
+    .screenshot img { border:1px solid var(--line); }
+    .external-example { margin-top:1rem; border:1px solid var(--line); border-radius:.7rem; background:#fff; padding:.72rem .9rem; }
+    .external-example summary { cursor:pointer; color:var(--blue); font-weight:700; }
+    .external-example p { margin-top:.55rem; }
     dl { display:grid; grid-template-columns:minmax(9rem,1fr) 3fr; gap:.7rem 1rem; margin:0; }
     dt { font-weight:750; }
     dd { margin:0; color:var(--sub); }
@@ -67,7 +72,7 @@
       <p class="tag" style="margin-top:1.4rem">Setup guide · 安裝圖解</p>
       <h1>第一次開啟油字幕</h1>
       <p>依照你的電腦選擇以下步驟。圖中用金色標示要按的位置，按鈕名稱會隨系統語言或版本略有不同。</p>
-      <nav aria-label="教學目錄"><a href="#mac">macOS · Gatekeeper</a><a href="#windows">Windows · SmartScreen</a><a href="#troubleshoot">排錯</a><a href="#srt">匯出 .srt</a><a href="#english" lang="en">English</a></nav>
+      <nav aria-label="教學目錄"><a href="#mac">macOS · Gatekeeper</a><a href="#mac-capture">Mac 螢幕與聲音</a><a href="#windows">Windows · SmartScreen</a><a href="#troubleshoot">排錯</a><a href="#srt">匯出 .srt</a><a href="#english" lang="en">English</a></nav>
     </div>
   </header>
   <main>
@@ -88,7 +93,47 @@
           <figure><svg viewBox="0 0 420 156" role="img" aria-label="確認開啟 V-Translate，金色標記 Open 按鈕"><rect class="panel" x="43" y="14" width="334" height="128" rx="14"/><text x="210" y="50" text-anchor="middle" font-size="16" font-weight="750">要開啟「V-Translate」嗎？</text><text class="quiet" x="210" y="74" text-anchor="middle" font-size="12">確認這個 App 的例外</text><text class="quiet" x="135" y="113" text-anchor="middle" font-size="13">取消</text><rect class="highlight" x="188" y="92" width="153" height="31" rx="7"/><text x="264" y="112" text-anchor="middle" font-size="13" font-weight="750">開啟 / Open</text></svg><figcaption>示意圖 · 開啟確認</figcaption></figure>
         </li>
       </ol>
+      <details class="external-example" open>
+        <summary>看 Apple 官方截圖 ·「仍要開啟」的位置</summary>
+        <figure class="screenshot">
+          <img data-online-image src="https://cdsassets.apple.com/live/7WUAS350/images/macos/sequoia/locale/zh-tw/macos-sequoia-system-settings-privacy-and-security-open-app-anyway.png" alt="Apple 官方 macOS 螢幕截圖。在隱私權與安全性的安全性區塊，右方顯示「仍要打開」按鈕。" loading="lazy" referrerpolicy="no-referrer">
+          <figcaption>Apple 支援的 macOS Sequoia 畫面。圖中的「範例 App」是 Apple 的示例，操作時請確認你的提示顯示油字幕。 <a href="https://support.apple.com/zh-tw/102445">看 Apple 原圖及說明</a></figcaption>
+        </figure>
+      </details>
       <p class="reference">找不到「仍要開啟」時，先重新嘗試開啟油字幕，再回到設定找該選項。Apple 說明這個按鈕會在嘗試開啟後保留約一小時。 <a href="https://support.apple.com/en-us/102445">Apple 官方 Gatekeeper 教學</a> · <a href="https://support.apple.com/en-euro/guide/mac-help/mh40617/27/mac/27">開啟例外的有效時間</a></p>
+    </section>
+    <section id="mac-capture" aria-labelledby="mac-capture-title">
+      <div class="section-title"><p class="tag">01B / macOS · Capture permission</p><h2 id="mac-capture-title">允許擷取螢幕與聲音</h2><p>如果 macOS 詢問錄製權限，或油字幕選不到直播分頁，請授權<strong>實際開啟播放器的 Chrome 或 Edge</strong>。設好權限後，仍要在瀏覽器的分享視窗勾選分頁音訊。</p></div>
+      <ol class="steps">
+        <li class="step">
+          <h3><span class="number">1</span>開啟「螢幕與系統錄音」</h3>
+          <p>按蘋果選單 →「系統設定」→「私隱與保安」→「螢幕與系統錄音」（Screen &amp; System Audio Recording）。較舊的 macOS 可能只顯示「螢幕錄製」（Screen Recording）。</p>
+          <figure><svg viewBox="0 0 420 164" role="img" aria-label="系統設定側邊欄選私隱與保安，然後開啟螢幕與系統錄音"><rect class="panel" x="12" y="12" width="396" height="140" rx="10"/><rect class="bar" x="23" y="24" width="126" height="117" rx="7"/><text x="35" y="47" font-size="12" font-weight="700">系統設定</text><rect x="29" y="65" width="114" height="28" rx="5" fill="#cfddf2"/><text x="36" y="83" font-size="12" font-weight="700">私隱與保安</text><text x="169" y="47" font-size="15" font-weight="750">私隱與保安</text><text class="quiet" x="169" y="72" font-size="12">咪高風</text><rect class="highlight" x="163" y="83" width="230" height="48" rx="7"/><text x="176" y="103" font-size="14" font-weight="750">螢幕與系統錄音</text><text x="176" y="120" font-size="10">Screen &amp; System Audio Recording</text><path d="m376 101 6 6-6 6" fill="none" stroke="#69461a" stroke-width="2"/></svg><figcaption>示意圖 · 權限位於「私隱與保安」</figcaption></figure>
+        </li>
+        <li class="step">
+          <h3><span class="number">2</span>打開 Chrome 或 Edge 的開關</h3>
+          <p>在可擷取螢幕及聲音的清單打開瀏覽器旁的開關。找不到瀏覽器時，按清單下方的 <strong>＋</strong>，從「應用程式」加入 Chrome 或 Edge。</p>
+          <figure><svg viewBox="0 0 420 164" role="img" aria-label="螢幕與系統錄音清單，Chrome 已允許，清單下方有加號"><rect class="panel" x="12" y="12" width="396" height="140" rx="10"/><text x="29" y="41" font-size="15" font-weight="750">螢幕與系統錄音</text><rect class="highlight" x="27" y="53" width="365" height="38" rx="7"/><text x="43" y="77" font-size="14" font-weight="750">Google Chrome / Microsoft Edge</text><rect x="342" y="62" width="35" height="19" rx="9" fill="#234ea0"/><circle cx="367" cy="71.5" r="7" fill="white"/><rect class="highlight" x="27" y="101" width="34" height="31" rx="6"/><text x="44" y="122" text-anchor="middle" font-size="18" font-weight="750">+</text><text class="quiet" x="73" y="121" font-size="12">清單沒有瀏覽器時加入</text></svg><figcaption>示意圖 · 開啟實際使用的瀏覽器</figcaption></figure>
+          <details class="external-example" open>
+            <summary>看實際 Mac 設定畫面</summary>
+            <figure class="screenshot">
+              <img data-online-image src="https://d33v4339jhl8k0.cloudfront.net/docs/assets/6272dbe508b964770b2f5df8/images/6720057df539bb6e3c7c6ebe/file-N6Xgpsrbtv.png" alt="真實 macOS 設定畫面，Google Chrome 在螢幕與系統錄音的清單中，右邊的開關已打開。" loading="lazy" referrerpolicy="no-referrer">
+              <figcaption>畫面來源為亞利桑那大學教學支援。 <a href="https://studenthelp.intech.arizona.edu/article/547-macos-users-screen-sharing-settings">看原圖及說明</a></figcaption>
+            </figure>
+          </details>
+        </li>
+        <li class="step">
+          <h3><span class="number">3</span>完全結束瀏覽器，再開一次</h3>
+          <p>若系統提供「結束並重新開啟」，按該按鈕。也可以在瀏覽器按 <strong>⌘ Q</strong>，再開 Chrome 或 Edge。若油字幕播放器也關了，重新開啟油字幕。</p>
+          <figure><svg viewBox="0 0 420 145" role="img" aria-label="按 Command Q 結束瀏覽器，然後重新開啟"><rect class="panel" x="12" y="12" width="396" height="121" rx="10"/><rect class="highlight" x="31" y="46" width="105" height="48" rx="8"/><text x="83" y="76" text-anchor="middle" font-size="23" font-weight="750">⌘ Q</text><path d="M158 70h40m-9-8 9 8-9 8" fill="none" stroke="#31518a" stroke-width="2.5"/><rect class="bar" x="218" y="46" width="167" height="48" rx="8"/><text x="301" y="75" text-anchor="middle" font-size="14" font-weight="750">重開 Chrome／Edge</text></svg><figcaption>示意圖 · 完全結束並重開瀏覽器</figcaption></figure>
+        </li>
+        <li class="step">
+          <h3><span class="number">4</span>選直播分頁，勾選音訊</h3>
+          <p>讓直播和播放器在同一個瀏覽器開啟。回到油字幕按「選擇直播分頁」，選擷取模式，再在瀏覽器選直播分頁、勾選 <strong>分享分頁音訊</strong>，按「分享」。</p>
+          <figure class="screenshot"><img src="../assets/guide/chrome-share-picker.png" width="728" height="610" alt="Chrome 官方擷取視窗，上方已選 Chrome Tab，下方的 Share tab audio 已勾選。" loading="lazy"><figcaption>真實 Chrome 截圖。先選上方 <strong>Chrome Tab</strong>，再核對左下角 <strong>Share tab audio</strong>。 <a href="https://developer.chrome.com/docs/extensions/how-to/web-platform/screen-capture">Chrome for Developers</a> · <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></figcaption></figure>
+        </li>
+      </ol>
+      <p class="reference">若畫面有動但沒聲音，先確認直播本身有聲音，再重選「分頁」並勾選分頁音訊。 <a href="https://support.apple.com/zh-hk/guide/mac-help/mchld6aa7d23/mac">Apple 官方權限說明</a> · <a href="https://support.google.com/meet/answer/10619995?hl=en">Google 的 macOS 權限提示</a></p>
     </section>
     <section id="windows" aria-labelledby="win-title">
       <div class="section-title"><p class="tag">02 / Windows</p><h2 id="win-title">SmartScreen 首次開啟</h2><p>適用 Windows 10／11 x64。Windows 可能在程式的信譽資料不足時顯示 Microsoft Defender SmartScreen 警告。</p></div>
@@ -113,7 +158,7 @@
       <dl>
         <dt>播放器沒有打開</dt><dd>先確認已安裝 Chrome 或 Edge。若舊版仍在背景執行，先在舊版按「關閉背景聽寫程式（Whisper）」，再開新版。</dd>
         <dt>模型尚未準備好</dt><dd>首次使用請選語言和效能，保持網絡連線，等模型準備完成再擷取。如果畫面顯示失敗，先核對網絡和可用空間，再按「準備 AI 模型」。</dd>
-        <dt>有畫面，沒有字幕或聲音</dt><dd>在 Chrome／Edge 分享視窗選「分頁」，並勾選分享分頁音訊。Mac 如要求錄製權限，請在「私隱與保安」授權給實際使用的瀏覽器，再重新開啟瀏覽器。</dd>
+        <dt>有畫面，沒有字幕或聲音</dt><dd>在 Chrome／Edge 分享視窗選「分頁」，並勾選分享分頁音訊。Mac 如要求錄製權限，請跟 <a href="#mac-capture">螢幕與聲音擷取圖解</a> 授權及重開瀏覽器。</dd>
         <dt>Windows 顯示缺少 DLL</dt><dd>若畫面指出缺少 Visual C++ 執行元件，可從 Microsoft 下載 x64 版。 <a href="https://learn.microsoft.com/en-us/cpp/windows/latest-supported-vc-redist">Microsoft Visual C++ Redistributable</a></dd>
       </dl>
     </section>
@@ -128,7 +173,7 @@
         <dt>Before opening</dt><dd>Download from the official site or its GitHub Release and check the matching SHA-256. Stop if the OS reports malware, a damaged file, or a managed-device block.</dd>
         <dt>macOS Gatekeeper</dt><dd>Unzip and move V-Translate.app to Applications. Try opening it once. If blocked, dismiss the warning, then go to System Settings → Privacy &amp; Security → Open Anyway. Confirm the app name and choose Open or Open Anyway. The Apple Silicon build is ad-hoc signed and has not been notarized. <a href="#mac">Illustrated steps</a></dd>
         <dt>Windows SmartScreen</dt><dd>Extract all files and open V-Translate.exe. If Windows protected your PC appears, check the file under More info. Choose Run anyway if available and you have verified the file. <a href="#windows">Illustrated steps</a></dd>
-        <dt>Share tab audio</dt><dd>Use Chrome or Edge and enable tab audio when sharing. If prompted on a Mac, grant the browser screen and system audio recording permission and restart it.</dd>
+        <dt>Share tab audio on Mac</dt><dd>If macOS prompts for permission, open System Settings → Privacy &amp; Security → Screen &amp; System Audio Recording. Enable Chrome or Edge, quit and relaunch it, then choose the live tab and enable Share tab audio. <a href="#mac-capture">Illustrated steps and screenshots</a></dd>
         <dt>Export subtitles</dt><dd>Once finalized captions appear, open Caption history and select Export .srt. Earlier releases label this button Export captions.</dd>
       </dl>
     </section>
