@@ -50,9 +50,7 @@
     figcaption { font-size:.78rem; color:var(--sub); margin-top:.35rem; }
     .screenshot { max-width:44rem; margin-top:.95rem; }
     .screenshot img { border:1px solid var(--line); }
-    .external-example { margin-top:1rem; border:1px solid var(--line); border-radius:.7rem; background:#fff; padding:.72rem .9rem; }
-    .external-example summary { cursor:pointer; color:var(--blue); font-weight:700; }
-    .external-example p { margin-top:.55rem; }
+    .settings-gallery { margin-top:1rem; border:1px solid var(--line); border-radius:.7rem; background:#fff; padding:1rem; }
     dl { display:grid; grid-template-columns:minmax(9rem,1fr) 3fr; gap:.7rem 1rem; margin:0; }
     dt { font-weight:750; }
     dd { margin:0; color:var(--sub); }
@@ -71,7 +69,7 @@
       <a href="https://cookieproduction853.github.io/V-Translate/">油字幕 / V-Translate</a>
       <p class="tag" style="margin-top:1.4rem">Setup guide · 安裝圖解</p>
       <h1>第一次開啟油字幕</h1>
-      <p>依照你的電腦選擇以下步驟。圖中用金色標示要按的位置，按鈕名稱會隨系統語言或版本略有不同。</p>
+      <p>依照你的電腦選擇以下步驟。圖中的箭咀和金色標記會指出要按的位置，按鈕名稱會隨系統語言或版本略有不同。</p>
       <nav aria-label="教學目錄"><a href="#mac">macOS · Gatekeeper</a><a href="#mac-capture">Mac 螢幕與聲音</a><a href="#windows">Windows · SmartScreen</a><a href="#troubleshoot">排錯</a><a href="#srt">匯出 .srt</a><a href="#english" lang="en">English</a></nav>
     </div>
   </header>
@@ -81,25 +79,18 @@
       <div class="section-title"><p class="tag">01 / macOS</p><h2 id="mac-title">Apple Silicon 首次開啟</h2><p>適用 Apple M 系列及 macOS 13.5 或以上。油字幕以 ad-hoc 簽署，尚未經 Apple 公證。Gatekeeper 可能在首次開啟時攔截。</p></div>
       <ol class="steps">
         <li class="step"><h3><span class="number">1</span>解壓 ZIP，移到「應用程式」</h3><p>在 Finder 雙擊下載的 ZIP。將解壓後的 <code>V-Translate.app</code> 拖到「應用程式」（Applications），然後雙擊開啟一次。</p>
-          <figure><svg viewBox="0 0 420 156" role="img" aria-label="Finder 中將 V-Translate.app 拖到應用程式資料夾的示意圖"><rect class="panel" x="12" y="12" width="396" height="132" rx="10"/><path class="bar" d="M12 33a10 10 0 0 1 10-10h376a10 10 0 0 1 10 10v11H12Z"/><text x="28" y="38" font-size="12" font-weight="700">Finder · 下載項目</text><rect x="30" y="65" width="143" height="51" rx="8" fill="#e8effb"/><text x="101" y="95" font-size="14" text-anchor="middle" font-weight="700">V-Translate.app</text><path d="M188 91h36m-9-9 9 9-9 9" fill="none" stroke="#31518a" stroke-width="2.5"/><rect class="highlight" x="240" y="65" width="148" height="51" rx="8"/><text x="314" y="88" text-anchor="middle" font-size="15" font-weight="700">應用程式</text><text x="314" y="105" text-anchor="middle" font-size="11">Applications</text></svg><figcaption>示意圖 · Finder</figcaption></figure>
+          <figure><img src="../assets/guide/mac-vtranslate-picker.png" width="1576" height="875" alt="Finder 的下載項目和應用程式位置，紅箭咀標出油字幕圖示。" loading="lazy"><figcaption>在 Finder 找到油字幕圖示。若剛解壓，可先到左側的「下載項目」查看。</figcaption></figure>
         </li>
         <li class="step"><h3><span class="number">2</span>若被攔截，先關閉提示</h3><p>如果 macOS 提示無法驗證開發者或無法檢查是否含有惡意軟件，關閉這個提示。下一步到「系統設定」處理。</p>
           <figure><svg viewBox="0 0 420 156" role="img" aria-label="Gatekeeper 的首次開啟提示，金色標記關閉提示的按鈕"><rect class="panel" x="42" y="14" width="336" height="128" rx="15"/><circle cx="75" cy="54" r="15" fill="#f6d385"/><text x="75" y="60" text-anchor="middle" font-size="19" font-weight="800">!</text><text x="100" y="52" font-size="15" font-weight="750">無法驗證「V-Translate」</text><text class="quiet" x="100" y="74" font-size="12">macOS 首次開啟提示</text><rect class="highlight" x="217" y="96" width="131" height="29" rx="7"/><text x="282" y="115" text-anchor="middle" font-size="13" font-weight="750">完成 / Done</text></svg><figcaption>示意圖 · Gatekeeper 提示</figcaption></figure>
         </li>
-        <li class="step"><h3><span class="number">3</span>在「私隱與保安」找「仍要開啟」</h3><p>開啟「系統設定」（System Settings），到「私隱與保安」或「隱私權與安全性」（Privacy &amp; Security），向下捲到安全性，按油字幕旁的「仍要開啟」（Open Anyway）。</p>
-          <figure><svg viewBox="0 0 420 156" role="img" aria-label="系統設定的 Privacy and Security，金色標記 Open Anyway"><rect class="panel" x="12" y="12" width="396" height="132" rx="10"/><rect class="bar" x="23" y="24" width="129" height="109" rx="7"/><text x="35" y="47" font-size="12" font-weight="700">系統設定</text><rect x="29" y="64" width="116" height="27" rx="5" fill="#cfddf2"/><text x="36" y="82" font-size="12" font-weight="700">私隱與保安</text><text x="171" y="48" font-size="15" font-weight="750">安全性</text><text class="quiet" x="171" y="71" font-size="12">V-Translate 已被阻擋</text><rect class="highlight" x="206" y="91" width="175" height="32" rx="7"/><text x="294" y="112" font-size="13" text-anchor="middle" font-weight="750">仍要開啟 / Open Anyway</text></svg><figcaption>示意圖 · Privacy &amp; Security</figcaption></figure>
+        <li class="step"><h3><span class="number">3</span>在「私隱與保安」找「強制打開」</h3><p>開啟「系統設定」（System Settings），到「私隱與保安」或「隱私權與安全性」（Privacy &amp; Security），向下捲到安全性，按油字幕旁的「強制打開」或「仍要開啟」（Open Anyway）。</p>
+          <figure><img src="../assets/guide/macos-open-anyway-arrow.png" width="1430" height="1196" alt="macOS 的隱私權與安全性畫面，紅箭咀指向「強制打開」按鈕。" loading="lazy"><figcaption>紅箭咀指向「強制打開」。圖中是 Apple 的範例 App，你的畫面應顯示油字幕。 <a href="https://support.apple.com/zh-tw/102445">Apple 原圖及說明</a></figcaption></figure>
         </li>
         <li class="step"><h3><span class="number">4</span>確認開啟油字幕</h3><p>確認提示上的程式名稱是 <code>V-Translate</code>，按「開啟」或「仍要開啟」。如系統要求，使用登入密碼或 Touch ID 確認。</p>
           <figure><svg viewBox="0 0 420 156" role="img" aria-label="確認開啟 V-Translate，金色標記 Open 按鈕"><rect class="panel" x="43" y="14" width="334" height="128" rx="14"/><text x="210" y="50" text-anchor="middle" font-size="16" font-weight="750">要開啟「V-Translate」嗎？</text><text class="quiet" x="210" y="74" text-anchor="middle" font-size="12">確認這個 App 的例外</text><text class="quiet" x="135" y="113" text-anchor="middle" font-size="13">取消</text><rect class="highlight" x="188" y="92" width="153" height="31" rx="7"/><text x="264" y="112" text-anchor="middle" font-size="13" font-weight="750">開啟 / Open</text></svg><figcaption>示意圖 · 開啟確認</figcaption></figure>
         </li>
       </ol>
-      <details class="external-example" open>
-        <summary>看 Apple 官方截圖 ·「仍要開啟」的位置</summary>
-        <figure class="screenshot">
-          <img data-online-image src="https://cdsassets.apple.com/live/7WUAS350/images/macos/sequoia/locale/zh-tw/macos-sequoia-system-settings-privacy-and-security-open-app-anyway.png" alt="Apple 官方 macOS 螢幕截圖。在隱私權與安全性的安全性區塊，右方顯示「仍要打開」按鈕。" loading="lazy" referrerpolicy="no-referrer">
-          <figcaption>Apple 支援的 macOS Sequoia 畫面。圖中的「範例 App」是 Apple 的示例，操作時請確認你的提示顯示油字幕。 <a href="https://support.apple.com/zh-tw/102445">看 Apple 原圖及說明</a></figcaption>
-        </figure>
-      </details>
       <p class="reference">找不到「仍要開啟」時，先重新嘗試開啟油字幕，再回到設定找該選項。Apple 說明這個按鈕會在嘗試開啟後保留約一小時。 <a href="https://support.apple.com/en-us/102445">Apple 官方 Gatekeeper 教學</a> · <a href="https://support.apple.com/en-euro/guide/mac-help/mh40617/27/mac/27">開啟例外的有效時間</a></p>
     </section>
     <section id="mac-capture" aria-labelledby="mac-capture-title">
@@ -114,13 +105,6 @@
           <h3><span class="number">2</span>打開 Chrome 或 Edge 的開關</h3>
           <p>在可擷取螢幕及聲音的清單打開瀏覽器旁的開關。找不到瀏覽器時，按清單下方的 <strong>＋</strong>，從「應用程式」加入 Chrome 或 Edge。</p>
           <figure><svg viewBox="0 0 420 164" role="img" aria-label="螢幕與系統錄音清單，Chrome 已允許，清單下方有加號"><rect class="panel" x="12" y="12" width="396" height="140" rx="10"/><text x="29" y="41" font-size="15" font-weight="750">螢幕與系統錄音</text><rect class="highlight" x="27" y="53" width="365" height="38" rx="7"/><text x="43" y="77" font-size="14" font-weight="750">Google Chrome / Microsoft Edge</text><rect x="342" y="62" width="35" height="19" rx="9" fill="#234ea0"/><circle cx="367" cy="71.5" r="7" fill="white"/><rect class="highlight" x="27" y="101" width="34" height="31" rx="6"/><text x="44" y="122" text-anchor="middle" font-size="18" font-weight="750">+</text><text class="quiet" x="73" y="121" font-size="12">清單沒有瀏覽器時加入</text></svg><figcaption>示意圖 · 開啟實際使用的瀏覽器</figcaption></figure>
-          <details class="external-example" open>
-            <summary>看實際 Mac 設定畫面</summary>
-            <figure class="screenshot">
-              <img data-online-image src="https://d33v4339jhl8k0.cloudfront.net/docs/assets/6272dbe508b964770b2f5df8/images/6720057df539bb6e3c7c6ebe/file-N6Xgpsrbtv.png" alt="真實 macOS 設定畫面，Google Chrome 在螢幕與系統錄音的清單中，右邊的開關已打開。" loading="lazy" referrerpolicy="no-referrer">
-              <figcaption>畫面來源為亞利桑那大學教學支援。 <a href="https://studenthelp.intech.arizona.edu/article/547-macos-users-screen-sharing-settings">看原圖及說明</a></figcaption>
-            </figure>
-          </details>
         </li>
         <li class="step">
           <h3><span class="number">3</span>完全結束瀏覽器，再開一次</h3>
@@ -133,6 +117,30 @@
           <figure class="screenshot"><img src="../assets/guide/chrome-share-picker.png" width="728" height="610" alt="Chrome 官方擷取視窗，上方已選 Chrome Tab，下方的 Share tab audio 已勾選。" loading="lazy"><figcaption>真實 Chrome 截圖。先選上方 <strong>Chrome Tab</strong>，再核對左下角 <strong>Share tab audio</strong>。 <a href="https://developer.chrome.com/docs/extensions/how-to/web-platform/screen-capture">Chrome for Developers</a> · <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></figcaption></figure>
         </li>
       </ol>
+      <div class="settings-gallery" id="mac-settings-screenshots">
+        <h3>實際 Mac 設定畫面</h3>
+        <figure class="screenshot">
+          <img src="https://d33v4339jhl8k0.cloudfront.net/docs/assets/6272dbe508b964770b2f5df8/images/671ffd9e3a0b506883e52c91/file-zQQXvXmj71.png" width="1422" height="396" alt="私隱與保安的 Screen &amp; System Audio Recording 選項。" loading="lazy" referrerpolicy="no-referrer">
+          <figcaption>1. 在「私隱與保安」選「螢幕與系統錄音」。</figcaption>
+        </figure>
+        <figure class="screenshot">
+          <img src="https://d33v4339jhl8k0.cloudfront.net/docs/assets/6272dbe508b964770b2f5df8/images/6536cfcf234cd752513281b8/file-XXgoL0a0Hl.png" width="1386" height="400" alt="Google Chrome 旁的螢幕錄製權限開關。" loading="lazy" referrerpolicy="no-referrer">
+          <figcaption>2. 打開你用來擷取直播的瀏覽器旁的開關。</figcaption>
+        </figure>
+        <figure class="screenshot">
+          <img src="https://d33v4339jhl8k0.cloudfront.net/docs/assets/6272dbe508b964770b2f5df8/images/671fff6791230b767524b95e/file-qVhtbtPQeW.png" width="986" height="524" alt="螢幕與系統錄音清單下方的加號按鈕。" loading="lazy" referrerpolicy="no-referrer">
+          <figcaption>3. 清單沒有瀏覽器時，按下方的「＋」。</figcaption>
+        </figure>
+        <figure class="screenshot">
+          <img src="https://d33v4339jhl8k0.cloudfront.net/docs/assets/6272dbe508b964770b2f5df8/images/6720014e91230b767524b95f/file-EYmq9kI3ol.png" width="1582" height="892" alt="應用程式選擇視窗已選 Google Chrome，右下角是 Open 按鈕。" loading="lazy" referrerpolicy="no-referrer">
+          <figcaption>4. 在「應用程式」選 Google Chrome 或 Microsoft Edge，再按「開啟」。</figcaption>
+        </figure>
+        <figure class="screenshot">
+          <img src="https://d33v4339jhl8k0.cloudfront.net/docs/assets/6272dbe508b964770b2f5df8/images/6720057df539bb6e3c7c6ebe/file-N6Xgpsrbtv.png" width="952" height="598" alt="螢幕與系統錄音清單選取 Google Chrome，並標示下方的減號按鈕。" loading="lazy" referrerpolicy="no-referrer">
+          <figcaption>開關已打開但仍無法擷取時，選瀏覽器並按「−」移除，再用「＋」重新加入並重開瀏覽器。</figcaption>
+        </figure>
+        <p class="reference"><a href="https://studenthelp.intech.arizona.edu/article/547-macos-users-screen-sharing-settings">截圖來源 · 亞利桑那大學教學支援</a></p>
+      </div>
       <p class="reference">若畫面有動但沒聲音，先確認直播本身有聲音，再重選「分頁」並勾選分頁音訊。 <a href="https://support.apple.com/zh-hk/guide/mac-help/mchld6aa7d23/mac">Apple 官方權限說明</a> · <a href="https://support.google.com/meet/answer/10619995?hl=en">Google 的 macOS 權限提示</a></p>
     </section>
     <section id="windows" aria-labelledby="win-title">
