@@ -1,10 +1,12 @@
-# Windows v1.6.2
+# Windows v1.6.3
 
-[Windows x64 ZIP](V-Translate-v1.6.2-Windows-x64.zip) · [版本及來源](release-Windows-x64.json) · [SHA-256](SHA256SUMS-Windows-x64.txt)
+[Windows x64 ZIP](V-Translate-v1.6.3-Windows-x64.zip) · [版本及來源](release-Windows-x64.json) · [SHA-256](SHA256SUMS-Windows-x64.txt)
 
 先關閉舊版的背景程式，再解壓縮並開啟 `V-Translate.exe`。請保留執行檔旁的 `whisper-vulkan.zip`。首次啟動會選擇語言及效能，並在導覽期間準備模型。
 
-[Apple Silicon v1.6.2 ZIP](V-Translate-v1.6.2-macOS-arm64.zip) · [macOS 版本及來源](release-macOS-arm64.json)
+[Apple Silicon v1.6.3 ZIP](V-Translate-v1.6.3-macOS-arm64.zip) · [macOS 版本及來源](release-macOS-arm64.json)
+
+開啟 ZIP 內的 Installation.html 查看 Gatekeeper、Mac 擷取權限、SmartScreen 和 .srt 匯出圖解。
 
 ---
 
